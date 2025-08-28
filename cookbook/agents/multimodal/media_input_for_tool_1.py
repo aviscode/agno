@@ -9,13 +9,12 @@ This demonstrates:
 Run: `python cookbook/agents/tool_media_access.py`
 """
 
-import base64
 from typing import Optional, Sequence
 
 from agno.agent import Agent
 from agno.media import File
 from agno.models.google import Gemini
-from agno.models.openai import OpenAIChat
+from agno.models.openai import OpenAIChat # noqa: F401
 from agno.tools import Toolkit
 
 
