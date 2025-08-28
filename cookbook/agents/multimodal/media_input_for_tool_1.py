@@ -5,8 +5,6 @@ This demonstrates:
 1. Uploading a PDF file to an agent
 2. A tool that can access and process the uploaded file (OCR simulation)
 3. The LLM responding based on the tool's processing result
-
-Run: `python cookbook/agents/tool_media_access.py`
 """
 
 from typing import Optional, Sequence
