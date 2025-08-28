@@ -1,14 +1,14 @@
 from dataclasses import dataclass
 from functools import partial
 from importlib.metadata import version
-from typing import Any, Callable, Dict, List, Literal, Optional, Type, TypeVar, get_type_hints
+from typing import Any, Callable, Dict, List, Literal, Optional, Sequence, Type, TypeVar, get_type_hints
 
 from docstring_parser import parse
 from packaging.version import Version
 from pydantic import BaseModel, Field, validate_call
 
 from agno.exceptions import AgentRunException
-from agno.media import AudioArtifact, ImageArtifact, VideoArtifact
+from agno.media import Audio, AudioArtifact, File, Image, ImageArtifact, Video, VideoArtifact
 from agno.utils.log import log_debug, log_error, log_exception, log_warning
 
 T = TypeVar("T")
@@ -124,6 +124,12 @@ class Function(BaseModel):
     _team: Optional[Any] = None
     # The session state that the function is associated with
     _session_state: Optional[Dict[str, Any]] = None
+
+    # Media context that the function is associated with
+    _images: Optional[Sequence[Image]] = None
+    _videos: Optional[Sequence[Video]] = None
+    _audios: Optional[Sequence[Audio]] = None
+    _files: Optional[Sequence[File]] = None
 
     def to_dict(self) -> Dict[str, Any]:
         return self.model_dump(
@@ -554,6 +560,17 @@ class FunctionCall(BaseModel):
         # Check if the entrypoint has an fc argument
         if "fc" in signature(self.function.entrypoint).parameters:  # type: ignore
             entrypoint_args["fc"] = self
+
+        # Check if the entrypoint has media arguments
+        if "images" in signature(self.function.entrypoint).parameters:  # type: ignore
+            entrypoint_args["images"] = self.function._images
+        if "videos" in signature(self.function.entrypoint).parameters:  # type: ignore
+            entrypoint_args["videos"] = self.function._videos
+        if "audios" in signature(self.function.entrypoint).parameters:  # type: ignore
+            entrypoint_args["audios"] = self.function._audios
+        if "files" in signature(self.function.entrypoint).parameters:  # type: ignore
+            entrypoint_args["files"] = self.function._files
+            
         return entrypoint_args
 
     def _build_hook_args(self, hook: Callable, name: str, func: Callable, args: Dict[str, Any]) -> Dict[str, Any]:

@@ -1129,6 +1129,10 @@ class Agent:
             run_response=run_response,
             session=agent_session,
             session_state=session_state,
+            images=images,
+            videos=videos,
+            audios=audio,
+            files=files,
             user_id=user_id,
             async_mode=False,
             knowledge_filters=effective_filters,
@@ -1670,6 +1674,10 @@ class Agent:
             run_response=run_response,
             session=agent_session,
             session_state=session_state,
+            images=images,
+            videos=videos,
+            audios=audio,
+            files=files,
             user_id=user_id,
             async_mode=True,
             knowledge_filters=effective_filters,
@@ -3685,6 +3693,10 @@ class Agent:
         run_response: RunOutput,
         session: AgentSession,
         session_state: Optional[Dict[str, Any]] = None,
+        images: Optional[Sequence[Image]] = None,
+        videos: Optional[Sequence[Video]] = None,
+        audios: Optional[Sequence[Audio]] = None,
+        files: Optional[Sequence[File]] = None,
         user_id: Optional[str] = None,
         async_mode: bool = False,
         knowledge_filters: Optional[Dict[str, Any]] = None,
@@ -3779,6 +3791,10 @@ class Agent:
         if self._functions_for_model:
             for func in self._functions_for_model.values():
                 func._session_state = session_state
+                func._images = images
+                func._videos = videos
+                func._audios = audios
+                func._files = files
 
     def _model_should_return_structured_output(self):
         self.model = cast(Model, self.model)
@@ -4804,7 +4820,7 @@ class Agent:
         """
 
         # Initialize the RunMessages object
-        run_messages = RunMessages()
+        run_messages = RunMessages(images=images, videos=videos, audios=audio, files=files)
 
         # 1. Add system message to run_messages
         system_message = self.get_system_message(session=session, user_id=user_id, dependencies=run_dependencies)
