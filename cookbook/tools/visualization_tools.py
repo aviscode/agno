@@ -1,8 +1,8 @@
 """📊 Data Visualization Tools - Create Charts and Graphs with AI Agents
 
 This example shows how to use the VisualizationTools to create various types of charts
-and graphs for data visualization. Perfect for business reports, analytics dashboards,
-and data presentations.
+and graphs for data visualization. Demonstrates include_tools/exclude_tools patterns
+for selective visualization function access.
 
 Run: `pip install matplotlib` to install the dependencies
 """
@@ -11,19 +11,84 @@ from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.tools.visualization import VisualizationTools
 
-# Create an agent with visualization capabilities
-viz_agent = Agent(
+# Example 1: All visualization functions available (default)
+viz_agent_full = Agent(
     model=OpenAIChat(id="gpt-4o"),
-    tools=[VisualizationTools(output_dir="business_charts")],
+    tools=[VisualizationTools(output_dir="business_charts")],  # All functions enabled
     instructions=[
-        "You are a data visualization expert and business analyst.",
-        "When asked to create charts, use the visualization tools available.",
+        "You are a data visualization expert with access to all chart types.",
+        "Use appropriate visualization functions for the data presented.",
         "Always provide meaningful titles, axis labels, and context.",
         "Suggest insights based on the data visualized.",
         "Format data appropriately for each chart type.",
     ],
     markdown=True,
 )
+
+# Example 2: Include only basic chart types
+viz_agent_basic = Agent(
+    model=OpenAIChat(id="gpt-4o"),
+    tools=[VisualizationTools(
+        output_dir="basic_charts",
+        include_tools=[
+            "create_bar_chart",
+            "create_line_chart", 
+            "create_pie_chart"
+        ]
+    )],
+    instructions=[
+        "You are a data visualization specialist focused on basic chart types.",
+        "Use bar charts for categorical comparisons.",
+        "Use line charts for trends over time.",
+        "Use pie charts for part-to-whole relationships.",
+        "Keep visualizations simple and clear.",
+    ],
+    markdown=True,
+)
+
+# Example 3: Exclude advanced/complex visualization functions
+viz_agent_safe = Agent(
+    model=OpenAIChat(id="gpt-4o"),
+    tools=[VisualizationTools(
+        output_dir="safe_charts",
+        exclude_tools=[
+            "create_3d_plot",         # Complex 3D visualizations
+            "create_heatmap",         # Complex matrix visualizations 
+            "create_subplot_grid"     # Complex multi-panel layouts
+        ]
+    )],
+    instructions=[
+        "You are a business analyst creating straightforward visualizations.",
+        "Focus on clear, easy-to-interpret charts.",
+        "Avoid overly complex visualization types.",
+        "Ensure charts are suitable for business presentations.",
+    ],
+    markdown=True,
+)
+
+# Example 4: Statistical analysis focused agent
+viz_agent_stats = Agent(
+    model=OpenAIChat(id="gpt-4o"),
+    tools=[VisualizationTools(
+        output_dir="stats_charts",
+        include_tools=[
+            "create_scatter_plot",
+            "create_histogram",
+            "create_box_plot",
+            "create_violin_plot"
+        ]
+    )],
+    instructions=[
+        "You are a statistical analyst focused on data distribution and correlation.",
+        "Use scatter plots to show relationships between variables.",
+        "Use histograms and box plots to show data distributions.",
+        "Provide statistical insights based on the visualizations.",
+    ],
+    markdown=True,
+)
+
+# Use the full-featured agent for the main examples
+viz_agent = viz_agent_full
 
 # Example 1: Sales Performance Analysis
 print("📊 Example 1: Creating a Sales Performance Chart")

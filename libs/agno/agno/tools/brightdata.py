@@ -22,10 +22,6 @@ class BrightDataTools(Toolkit):
         api_key: Optional[str] = None,
         serp_zone: str = "serp_api",
         web_unlocker_zone: str = "web_unlocker1",
-        scrape_as_markdown: bool = True,
-        get_screenshot: bool = False,
-        search_engine: bool = True,
-        web_data_feed: bool = True,
         verbose: bool = False,
         timeout: int = 600,
         **kwargs,
@@ -47,16 +43,12 @@ class BrightDataTools(Toolkit):
         self.serp_zone = getenv("BRIGHT_DATA_SERP_ZONE", serp_zone)
         self.timeout = timeout
 
-        tools: List[Any] = []
-
-        if scrape_as_markdown:
-            tools.append(self.scrape_as_markdown)
-        if get_screenshot:
-            tools.append(self.get_screenshot)
-        if search_engine:
-            tools.append(self.search_engine)
-        if web_data_feed:
-            tools.append(self.web_data_feed)
+        tools: List[Any] = [
+            self.scrape_as_markdown,
+            self.get_screenshot,
+            self.search_engine,
+            self.web_data_feed,
+        ]
 
         super().__init__(name="brightdata_tools", tools=tools, **kwargs)
 

@@ -14,10 +14,6 @@ class DiscordTools(Toolkit):
     def __init__(
         self,
         bot_token: Optional[str] = None,
-        enable_messaging: bool = True,
-        enable_history: bool = True,
-        enable_channel_management: bool = True,
-        enable_message_management: bool = True,
         **kwargs,
     ):
         self.bot_token = bot_token or getenv("DISCORD_BOT_TOKEN")
@@ -31,16 +27,17 @@ class DiscordTools(Toolkit):
             "Content-Type": "application/json",
         }
 
-        tools: List[Any] = []
-        if enable_messaging:
-            tools.append(self.send_message)
-        if enable_history:
-            tools.append(self.get_channel_messages)
-        if enable_channel_management:
-            tools.append(self.get_channel_info)
-            tools.append(self.list_channels)
-        if enable_message_management:
-            tools.append(self.delete_message)
+        tools: List[Any] = [
+            # Messaging
+            self.send_message,
+            # History
+            self.get_channel_messages,
+            # Channel management
+            self.get_channel_info,
+            self.list_channels,
+            # Message management
+            self.delete_message,
+        ]
 
         super().__init__(name="discord", tools=tools, **kwargs)
 
