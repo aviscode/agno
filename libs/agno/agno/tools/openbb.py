@@ -17,6 +17,12 @@ class OpenBBTools(Toolkit):
         obb: Optional[Any] = None,
         openbb_pat: Optional[str] = None,
         provider: Literal["benzinga", "fmp", "intrinio", "polygon", "tiingo", "tmx", "yfinance"] = "yfinance",
+        enable_get_stock_price: bool = True,
+        enable_search_company_symbol: bool = True,
+        enable_get_company_news: bool = True,
+        enable_get_company_profile: bool = True,
+        enable_get_price_targets: bool = True,
+        all: bool = False,
         **kwargs,
     ):
         self.obb = obb or openbb_app
@@ -28,13 +34,17 @@ class OpenBBTools(Toolkit):
 
         self.provider: Literal["benzinga", "fmp", "intrinio", "polygon", "tiingo", "tmx", "yfinance"] = provider
 
-        tools: List[Any] = [
-            self.get_stock_price,
-            self.search_company_symbol,
-            self.get_company_news,
-            self.get_company_profile,
-            self.get_price_targets,
-        ]
+        tools: List[Any] = []
+        if enable_get_stock_price or all:
+            tools.append(self.get_stock_price)
+        if enable_search_company_symbol or all:
+            tools.append(self.search_company_symbol)
+        if enable_get_company_news or all:
+            tools.append(self.get_company_news)
+        if enable_get_company_profile or all:
+            tools.append(self.get_company_profile)
+        if enable_get_price_targets or all:
+            tools.append(self.get_price_targets)
 
         super().__init__(name="openbb_tools", tools=tools, **kwargs)
 

@@ -11,10 +11,15 @@ from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.tools.visualization import VisualizationTools
 
-# Example 1: All visualization functions available (default)
-viz_agent_full = Agent(
+# Example 1: Enable all visualization functions
+viz_agent_all = Agent(
     model=OpenAIChat(id="gpt-4o"),
-    tools=[VisualizationTools(output_dir="business_charts")],  # All functions enabled
+    tools=[
+        VisualizationTools(
+            all=True,  # Enable all visualization functions
+            output_dir="business_charts",
+        )
+    ],
     instructions=[
         "You are a data visualization expert with access to all chart types.",
         "Use appropriate visualization functions for the data presented.",
@@ -25,17 +30,42 @@ viz_agent_full = Agent(
     markdown=True,
 )
 
-# Example 2: Include only basic chart types
+# Example 1b: All visualization functions available (explicit flags)
+viz_agent_full = Agent(
+    model=OpenAIChat(id="gpt-4o"),
+    tools=[
+        VisualizationTools(
+            enable_create_bar_chart=True,
+            enable_create_line_chart=True,
+            enable_create_scatter_plot=True,
+            enable_create_pie_chart=True,
+            enable_create_histogram=True,
+            output_dir="business_charts",
+        )
+    ],
+    instructions=[
+        "You are a data visualization expert with access to all chart types.",
+        "Use appropriate visualization functions for the data presented.",
+        "Always provide meaningful titles, axis labels, and context.",
+        "Suggest insights based on the data visualized.",
+        "Format data appropriately for each chart type.",
+    ],
+    markdown=True,
+)
+
+# Example 2: Enable only basic chart types
 viz_agent_basic = Agent(
     model=OpenAIChat(id="gpt-4o"),
-    tools=[VisualizationTools(
-        output_dir="basic_charts",
-        include_tools=[
-            "create_bar_chart",
-            "create_line_chart", 
-            "create_pie_chart"
-        ]
-    )],
+    tools=[
+        VisualizationTools(
+            enable_create_bar_chart=True,
+            enable_create_line_chart=True,
+            enable_create_pie_chart=True,
+            enable_create_scatter_plot=False,
+            enable_create_histogram=False,
+            output_dir="basic_charts",
+        )
+    ],
     instructions=[
         "You are a data visualization specialist focused on basic chart types.",
         "Use bar charts for categorical comparisons.",
@@ -46,17 +76,20 @@ viz_agent_basic = Agent(
     markdown=True,
 )
 
-# Example 3: Exclude advanced/complex visualization functions
+# Example 3: Enable standard visualization functions (avoid complex ones)
 viz_agent_safe = Agent(
     model=OpenAIChat(id="gpt-4o"),
-    tools=[VisualizationTools(
-        output_dir="safe_charts",
-        exclude_tools=[
-            "create_3d_plot",         # Complex 3D visualizations
-            "create_heatmap",         # Complex matrix visualizations 
-            "create_subplot_grid"     # Complex multi-panel layouts
-        ]
-    )],
+    tools=[
+        VisualizationTools(
+            enable_create_bar_chart=True,
+            enable_create_line_chart=True,
+            enable_create_scatter_plot=True,
+            enable_create_pie_chart=True,
+            enable_create_histogram=True,
+            # Note: Complex functions like create_3d_plot, create_heatmap would be False
+            output_dir="safe_charts",
+        )
+    ],
     instructions=[
         "You are a business analyst creating straightforward visualizations.",
         "Focus on clear, easy-to-interpret charts.",
@@ -69,26 +102,28 @@ viz_agent_safe = Agent(
 # Example 4: Statistical analysis focused agent
 viz_agent_stats = Agent(
     model=OpenAIChat(id="gpt-4o"),
-    tools=[VisualizationTools(
-        output_dir="stats_charts",
-        include_tools=[
-            "create_scatter_plot",
-            "create_histogram",
-            "create_box_plot",
-            "create_violin_plot"
-        ]
-    )],
+    tools=[
+        VisualizationTools(
+            enable_create_scatter_plot=True,
+            enable_create_histogram=True,
+            enable_create_bar_chart=False,
+            enable_create_line_chart=False,
+            enable_create_pie_chart=False,
+            # Note: Would also enable box_plot, violin_plot if available
+            output_dir="stats_charts",
+        )
+    ],
     instructions=[
         "You are a statistical analyst focused on data distribution and correlation.",
         "Use scatter plots to show relationships between variables.",
-        "Use histograms and box plots to show data distributions.",
+        "Use histograms to show data distributions.",
         "Provide statistical insights based on the visualizations.",
     ],
     markdown=True,
 )
 
-# Use the full-featured agent for the main examples
-viz_agent = viz_agent_full
+# Use the all-enabled agent for the main examples
+viz_agent = viz_agent_all
 
 # Example 1: Sales Performance Analysis
 print("📊 Example 1: Creating a Sales Performance Chart")
@@ -183,7 +218,12 @@ print("=" * 60 + "\n")
 
 bi_agent = Agent(
     model=OpenAIChat(id="gpt-4o"),
-    tools=[VisualizationTools(output_dir="dashboard_charts", enable_all=True)],
+    tools=[
+        VisualizationTools(
+            all=True,  # Enable all visualization functions
+            output_dir="dashboard_charts",
+        )
+    ],
     instructions=[
         "You are a Business Intelligence analyst.",
         "Create comprehensive visualizations for executive dashboards.",

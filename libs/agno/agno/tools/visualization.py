@@ -10,6 +10,12 @@ class VisualizationTools(Toolkit):
     def __init__(
         self,
         output_dir: str = "charts",
+        enable_create_bar_chart: bool = True,
+        enable_create_line_chart: bool = True,
+        enable_create_pie_chart: bool = True,
+        enable_create_scatter_plot: bool = True,
+        enable_create_histogram: bool = True,
+        all: bool = False,
         **kwargs,
     ):
         """
@@ -33,13 +39,17 @@ class VisualizationTools(Toolkit):
 
         self.output_dir = output_dir
 
-        tools: List[Any] = [
-            self.create_bar_chart,
-            self.create_line_chart,
-            self.create_pie_chart,
-            self.create_scatter_plot,
-            self.create_histogram,
-        ]
+        tools: List[Any] = []
+        if enable_create_bar_chart or all:
+            tools.append(self.create_bar_chart)
+        if enable_create_line_chart or all:
+            tools.append(self.create_line_chart)
+        if enable_create_pie_chart or all:
+            tools.append(self.create_pie_chart)
+        if enable_create_scatter_plot or all:
+            tools.append(self.create_scatter_plot)
+        if enable_create_histogram or all:
+            tools.append(self.create_histogram)
 
         super().__init__(name="visualization_tools", tools=tools, **kwargs)
 
