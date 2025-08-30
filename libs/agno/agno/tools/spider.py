@@ -27,10 +27,6 @@ class SpiderTools(Toolkit):
     
     def __init__(
         self,
-        enable_search: bool = True,
-        enable_scrape: bool = True,
-        enable_crawl: bool = True,
-        all: bool = False,
         max_results: Optional[int] = None,
         url: Optional[str] = None,
         optional_params: Optional[dict] = None,
@@ -40,13 +36,11 @@ class SpiderTools(Toolkit):
         self.url = url
         self.optional_params = optional_params or {}
 
-        tools: List[Any] = []
-        if all or enable_search:
-            tools.append(self.search)
-        if all or enable_scrape:
-            tools.append(self.scrape)
-        if all or enable_crawl:
-            tools.append(self.crawl)
+        tools: List[Any] = [
+            self.search,
+            self.scrape,
+            self.crawl,
+        ]
 
         super().__init__(name="spider", tools=tools, **kwargs)
 

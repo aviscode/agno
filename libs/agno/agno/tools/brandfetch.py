@@ -39,9 +39,16 @@ class BrandfetchTools(Toolkit):
         client_id: Optional[str] = None,
         base_url: str = "https://api.brandfetch.io/v2",
         timeout: Optional[float] = 20.0,
+        # Backward-compat toggles
         async_tools: bool = False,
         brand: bool = True,
         search: bool = False,
+        # New canonical enable flags (<6 functions) + all
+        enable_search_by_identifier: bool = True,
+        enable_search_by_brand: bool = False,
+        enable_asearch_by_identifier: bool = False,
+        enable_asearch_by_brand: bool = False,
+        all: bool = False,
         **kwargs,
     ):
         self.api_key = api_key or getenv("BRANDFETCH_API_KEY")
@@ -53,15 +60,16 @@ class BrandfetchTools(Toolkit):
         self.brand_url = f"{self.base_url}/brands"
 
         tools: list[Any] = []
+        # Backward-compat mapping: prefer new enable_* flags, but honor legacy toggles
         if self.async_tools:
-            if brand:
+            if all or enable_asearch_by_identifier or brand:
                 tools.append(self.asearch_by_identifier)
-            if search:
+            if all or enable_asearch_by_brand or search:
                 tools.append(self.asearch_by_brand)
         else:
-            if brand:
+            if all or enable_search_by_identifier or brand:
                 tools.append(self.search_by_identifier)
-            if search:
+            if all or enable_search_by_brand or search:
                 tools.append(self.search_by_brand)
         name = kwargs.pop("name", "brandfetch_tools")
         super().__init__(name=name, tools=tools, **kwargs)

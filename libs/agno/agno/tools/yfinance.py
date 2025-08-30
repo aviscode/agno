@@ -1,4 +1,5 @@
 import json
+from typing import List, Optional
 
 from agno.tools import Toolkit
 from agno.utils.log import log_debug

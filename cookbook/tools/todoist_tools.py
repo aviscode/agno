@@ -16,21 +16,58 @@ from agno.agent import Agent
 from agno.models.google.gemini import Gemini
 from agno.tools.todoist import TodoistTools
 
-todoist_agent = Agent(
-    name="Todoist Agent",
-    role="Manage your todoist tasks",
+# Example 1: All functions available (default behavior)
+todoist_agent_all = Agent(
+    name="Todoist Agent - All Functions",
+    role="Manage your todoist tasks with full capabilities",
     instructions=[
-        "When given a task, create a todoist task for it.",
-        "When given a list of tasks, create a todoist task for each one.",
-        "When given a task to update, update the todoist task.",
-        "When given a task to delete, delete the todoist task.",
-        "When given a task to get, get the todoist task.",
+        "You have access to all Todoist operations.",
+        "You can create, read, update, delete tasks and manage projects.",
     ],
-    id="todoist-agent",
+    id="todoist-agent-all",
     model=Gemini("gemini-2.0-flash-exp"),
     tools=[TodoistTools()],
     markdown=True,
 )
+
+# Example 2: Include specific functions only
+todoist_agent_readonly = Agent(
+    name="Todoist Agent - Read Only",
+    role="Read todoist tasks and projects",
+    instructions=[
+        "You can only read tasks and projects.",
+        "You cannot create, update, or delete anything.",
+    ],
+    id="todoist-agent-readonly",
+    model=Gemini("gemini-2.0-flash-exp"),
+    tools=[
+        TodoistTools(
+            include_tools=["get_task", "get_active_tasks", "get_projects"]
+        )
+    ],
+    markdown=True,
+)
+
+# Example 3: Exclude dangerous functions
+todoist_agent_safe = Agent(
+    name="Todoist Agent - Safe Mode",
+    role="Manage your todoist tasks safely",
+    instructions=[
+        "You can create and update tasks but cannot delete anything.",
+        "You have read access to all tasks and projects.",
+    ],
+    id="todoist-agent-safe",
+    model=Gemini("gemini-2.0-flash-exp"),
+    tools=[
+        TodoistTools(
+            exclude_tools=["delete_task"]
+        )
+    ],
+    markdown=True,
+)
+
+# Use the full-featured agent for examples
+todoist_agent = todoist_agent_all
 
 # Example 1: Create a task
 print("\n=== Create a task ===")

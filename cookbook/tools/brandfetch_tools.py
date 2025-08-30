@@ -36,7 +36,7 @@ from agno.tools.brandfetch import BrandfetchTools
 # Brand Search API
 
 agent = Agent(
-    tools=[BrandfetchTools(search=True)],
+    tools=[BrandfetchTools(enable_search_by_brand=True)],
     show_tool_calls=True,
     description="You are a Brand research agent. Given a company name or company domain, you will use the Brandfetch API to retrieve the company's brand information.",
 )

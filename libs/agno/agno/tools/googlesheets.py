@@ -95,6 +95,11 @@ class GoogleSheetsTools(Toolkit):
         creds_path: Optional[str] = None,
         token_path: Optional[str] = None,
         oauth_port: int = 0,
+        enable_read_sheet: bool = True,
+        enable_create_sheet: bool = True,
+        enable_update_sheet: bool = True,
+        enable_create_duplicate_sheet: bool = True,
+        all: bool = False,
         **kwargs,
     ):
         """Initialize GoogleSheetsTools with the specified configuration.
@@ -123,12 +128,15 @@ class GoogleSheetsTools(Toolkit):
         else:
             self.scopes = scopes
 
-        tools: List[Any] = [
-            self.read_sheet,
-            self.create_sheet,
-            self.update_sheet,
-            self.create_duplicate_sheet,
-        ]
+        tools: List[Any] = []
+        if all or enable_read_sheet:
+            tools.append(self.read_sheet)
+        if all or enable_create_sheet:
+            tools.append(self.create_sheet)
+        if all or enable_update_sheet:
+            tools.append(self.update_sheet)
+        if all or enable_create_duplicate_sheet:
+            tools.append(self.create_duplicate_sheet)
 
         super().__init__(name="google_sheets_tools", tools=tools, **kwargs)
 

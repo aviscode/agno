@@ -54,6 +54,11 @@ class MemoriTools(Toolkit):
         verbose: bool = False,
         config: Optional[Dict[str, Any]] = None,
         auto_enable: bool = True,
+        # Enable flags (<6 functions) + all
+        enable_search_memory: bool = True,
+        enable_record_conversation: bool = True,
+        enable_get_memory_stats: bool = True,
+        all: bool = False,
         **kwargs,
     ):
         """
@@ -69,15 +74,15 @@ class MemoriTools(Toolkit):
             auto_enable: Automatically enable the memory system on initialization
             **kwargs: Additional arguments passed to Toolkit base class
         """
-        super().__init__(
-            name="memori_tools",
-            tools=[
-                self.search_memory,
-                self.record_conversation,
-                self.get_memory_stats,
-            ],
-            **kwargs,
-        )
+        tools = []
+        if all or enable_search_memory:
+            tools.append(self.search_memory)
+        if all or enable_record_conversation:
+            tools.append(self.record_conversation)
+        if all or enable_get_memory_stats:
+            tools.append(self.get_memory_stats)
+
+        super().__init__(name="memori_tools", tools=tools, **kwargs)
 
         # Set default database connection if not provided
         if not database_connect:
