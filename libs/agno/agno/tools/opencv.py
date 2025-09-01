@@ -1,6 +1,6 @@
 import time
 from pathlib import Path
-from typing import Any, Callable, List
+from typing import Callable, List
 from uuid import uuid4
 
 from agno.agent import Agent
