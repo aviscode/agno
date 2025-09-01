@@ -27,8 +27,6 @@ memory_manager_full = MemoryManager(
     db=memory_db,
     add_memories=True,
     update_memories=True, 
-    delete_memories=False,
-    clear_memories=False,
 )
 
 agent_full = Agent(
