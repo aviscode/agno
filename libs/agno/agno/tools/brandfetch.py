@@ -43,8 +43,6 @@ class BrandfetchTools(Toolkit):
         timeout: Optional[float] = 20.0,
         enable_search_by_identifier: bool = True,
         enable_search_by_brand: bool = False,
-        enable_asearch_by_identifier: bool = False,
-        enable_asearch_by_brand: bool = False,
         all: bool = False,
         async_tools: bool = False,
         **kwargs,
@@ -59,9 +57,9 @@ class BrandfetchTools(Toolkit):
         tools: list[Any] = []
         # Backward-compat mapping: prefer new enable_* flags, but honor legacy toggles
         if async_tools:
-            if all or enable_asearch_by_identifier:
+            if all or enable_search_by_identifier:
                 tools.append(self.asearch_by_identifier)
-            if all or enable_asearch_by_brand:
+            if all or enable_search_by_brand:
                 tools.append(self.asearch_by_brand)
         else:
             if all or enable_search_by_identifier:

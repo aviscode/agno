@@ -19,7 +19,7 @@ except ImportError:
 class ArxivTools(Toolkit):
     def __init__(
         self,
-        enable_search_arxiv_and_return_articles: bool = True,
+        enable_search_arxiv: bool = True,
         enable_read_arxiv_papers: bool = True,
         all: bool = False,
         download_dir: Optional[Path] = None,
@@ -29,7 +29,7 @@ class ArxivTools(Toolkit):
         self.download_dir: Path = download_dir or Path(__file__).parent.joinpath("arxiv_pdfs")
 
         tools: List[Any] = []
-        if all or enable_search_arxiv_and_return_articles:
+        if all or enable_search_arxiv:
             tools.append(self.search_arxiv_and_return_articles)
         if all or enable_read_arxiv_papers:
             tools.append(self.read_arxiv_papers)

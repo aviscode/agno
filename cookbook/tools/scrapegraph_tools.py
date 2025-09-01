@@ -20,23 +20,12 @@ agent_specific = Agent(
             enable_markdownify=True,
             enable_searchscraper=False,
             enable_crawl=False,
-            enable_speech2text=False,
         )
     ],
     markdown=True,
     stream=True,
 )
 
-# Example 3: Default behavior - only smartscraper enabled (legacy support)
-scrapegraph = ScrapeGraphTools(
-    enable_smartscraper=True,
-    enable_markdownify=False,
-    enable_searchscraper=False,
-    enable_crawl=False,
-    enable_speech2text=False,
-)
-
-agent = Agent(tools=[scrapegraph], markdown=True, stream=True)
 
 # Example usage with all functions enabled
 print("=== Example 1: Using all ScrapeGraph functions ===")
@@ -60,16 +49,6 @@ Use smartscraper to extract the following from https://www.wired.com/category/sc
 - Author
 """)
 
-# Example usage with default configuration (legacy)
-print("\n=== Example 3: Default ScrapeGraph agent usage (smartscraper only) ===")
-agent.print_response("""
-Use smartscraper to extract the following from https://www.wired.com/category/science/:
-- News articles
-- Headlines
-- Images
-- Links
-- Author
-""")
 
 # Additional examples with specific tool configurations (legacy support)
 scrapegraph_md = ScrapeGraphTools(enable_markdownify=True, enable_smartscraper=False)

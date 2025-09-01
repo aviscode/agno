@@ -21,7 +21,11 @@ class FindEmailOutput(BaseModel):
 read_only_agent = Agent(
     name="Gmail Reader Agent",
     model=OpenAIChat(id="gpt-4o"),
-    tools=[GmailTools(include_tools=["search_gmail", "read_email", "get_email_body"])],
+    tools=[
+        GmailTools(
+            include_tools=["search_emails", "get_emails_by_thread", "get_email_body"]
+        )
+    ],
     description="You are a Gmail reading specialist that can search and read emails.",
     instructions=[
         "You can search and read Gmail messages but cannot send or draft emails.",

@@ -32,8 +32,6 @@ agent_readonly = Agent(
             enable_read_file=True,
             enable_search_files=True,
             enable_list_files=True,
-            enable_write_file=False,  # Disable file writing
-            enable_delete_file=False,  # Disable file deletion
         )
     ],
     description="You are a file reader focused on accessing and searching existing files.",
@@ -64,8 +62,7 @@ agent_writer = Agent(
     tools=[
         FileTools(
             Path("tmp/file"),
-            enable_write_file=True,
-            enable_create_directory=True,  # Assuming this function exists
+            enable_save_file=True,
             enable_read_file=False,  # Disable file reading
             enable_search_files=False,  # Disable file searching
         )

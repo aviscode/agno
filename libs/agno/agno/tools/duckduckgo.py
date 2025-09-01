@@ -25,8 +25,8 @@ class DuckDuckGoTools(Toolkit):
 
     def __init__(
         self,
-        enable_duckduckgo_search: bool = True,
-        enable_duckduckgo_news: bool = True,
+        enable_search: bool = True,
+        enable_news: bool = True,
         all: bool = False,
         modifier: Optional[str] = None,
         fixed_max_results: Optional[int] = None,
@@ -42,9 +42,9 @@ class DuckDuckGoTools(Toolkit):
         self.verify_ssl: bool = verify_ssl
 
         tools: List[Any] = []
-        if all or enable_duckduckgo_search:
+        if all or enable_search:
             tools.append(self.duckduckgo_search)
-        if all or enable_duckduckgo_news:
+        if all or enable_news:
             tools.append(self.duckduckgo_news)
 
         super().__init__(name="duckduckgo", tools=tools, **kwargs)

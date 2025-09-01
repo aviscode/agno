@@ -27,8 +27,8 @@ agent_full = Agent(
 agent_search_only = Agent(
     tools=[
         ArxivTools(
-            enable_search_papers=True,
-            enable_get_paper_details=False,  # Disable detailed paper analysis
+            enable_search_arxiv=True,
+            enable_read_arxiv_papers=False,  # Disable detailed paper analysis
         )
     ],
     description="You are a research search specialist focused on finding relevant papers.",
@@ -56,8 +56,8 @@ agent_comprehensive = Agent(
 agent_focused = Agent(
     tools=[
         ArxivTools(
-            enable_search_papers=True,
-            enable_get_paper_details=True,
+            enable_search_arxiv=True,
+            enable_read_arxiv_papers=True,
             # Add other enable_ flags as needed based on available functions
         )
     ],

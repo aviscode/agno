@@ -12,22 +12,11 @@ agent_all = Agent(
 # Example 2: Include specific functions only
 agent_specific = Agent(
     name="Spider Agent - Search Only",
-    tools=[
-        SpiderTools(include_tools=["search"], optional_params={"proxy_enabled": True})
-    ],
+    tools=[SpiderTools(enable_crawl=False, optional_params={"proxy_enabled": True})],
     instructions=["You can only search the web, no scraping or crawling."],
     markdown=True,
 )
 
-# Example 3: Exclude crawling function
-agent_no_crawl = Agent(
-    name="Spider Agent - No Crawling",
-    tools=[
-        SpiderTools(exclude_tools=["crawl"], optional_params={"proxy_enabled": True})
-    ],
-    instructions=["You can search and scrape but cannot crawl entire websites."],
-    markdown=True,
-)
 
 # Use the default agent for examples
 agent = agent_all

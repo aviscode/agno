@@ -43,9 +43,6 @@ agent_search = Agent(
         GoogleMapTools(
             include_tools=[
                 "search_places",
-                "get_place_details",
-                "find_place_from_text",
-                "get_nearby_places",
             ]
         ),
     ],

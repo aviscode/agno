@@ -30,24 +30,9 @@ todoist_agent_all = Agent(
     markdown=True,
 )
 
-# Example 2: Include specific functions only
-todoist_agent_readonly = Agent(
-    name="Todoist Agent - Read Only",
-    role="Read todoist tasks and projects",
-    instructions=[
-        "You can only read tasks and projects.",
-        "You cannot create, update, or delete anything.",
-    ],
-    id="todoist-agent-readonly",
-    model=Gemini("gemini-2.0-flash-exp"),
-    tools=[
-        TodoistTools(include_tools=["get_task", "get_active_tasks", "get_projects"])
-    ],
-    markdown=True,
-)
 
 # Example 3: Exclude dangerous functions
-todoist_agent_safe = Agent(
+todoist_agent = Agent(
     name="Todoist Agent - Safe Mode",
     role="Manage your todoist tasks safely",
     instructions=[
@@ -60,12 +45,12 @@ todoist_agent_safe = Agent(
     markdown=True,
 )
 
-# Use the full-featured agent for examples
-todoist_agent = todoist_agent_all
 
 # Example 1: Create a task
 print("\n=== Create a task ===")
-todoist_agent.print_response("Create a todoist task to buy groceries tomorrow at 10am")
+todoist_agent_all.print_response(
+    "Create a todoist task to buy groceries tomorrow at 10am"
+)
 
 
 # Example 2: Delete a task
@@ -73,8 +58,3 @@ print("\n=== Delete a task ===")
 todoist_agent.print_response(
     "Delete the todoist task to buy groceries tomorrow at 10am"
 )
-
-
-# Example 3: Get all tasks
-print("\n=== Get all tasks ===")
-todoist_agent.print_response("Get all the todoist tasks")

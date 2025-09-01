@@ -20,6 +20,8 @@ You can find it on https://developers.brandfetch.com/dashboard/brand-search-api 
 
 """
 
+import asyncio
+
 from agno.agent import Agent
 from agno.tools.brandfetch import BrandfetchTools
 
@@ -38,4 +40,6 @@ agent = Agent(
     tools=[BrandfetchTools(async_tools=True)],
     description="You are a Brand research agent. Given a company name or company domain, you will use the Brandfetch API to retrieve the company's brand information.",
 )
-agent.print_response("What is the brand information of Agno?", markdown=True)
+asyncio.run(
+    agent.aprint_response("What is the brand information of Agno?", markdown=True)
+)

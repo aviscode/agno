@@ -5,9 +5,7 @@ from agno.tools.duckduckgo import DuckDuckGoTools
 # Example 1: Enable specific DuckDuckGo functions
 agent = Agent(
     model=OpenAIChat(id="gpt-4o"),
-    tools=[
-        DuckDuckGoTools(enable_duckduckgo_search=True, enable_duckduckgo_news=False)
-    ],
+    tools=[DuckDuckGoTools(enable_search=True, enable_news=False)],
 )
 
 # Example 2: Enable all DuckDuckGo functions
@@ -16,9 +14,7 @@ agent_all = Agent(model=OpenAIChat(id="gpt-4o"), tools=[DuckDuckGoTools(all=True
 # Example 3: Enable only news search
 news_agent = Agent(
     model=OpenAIChat(id="gpt-4o"),
-    tools=[
-        DuckDuckGoTools(enable_duckduckgo_search=False, enable_duckduckgo_news=True)
-    ],
+    tools=[DuckDuckGoTools(enable_search=False, enable_news=True)],
 )
 
 # Test the agents

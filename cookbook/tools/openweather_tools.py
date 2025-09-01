@@ -33,10 +33,10 @@ agent_all = Agent(
 agent_specific = Agent(
     tools=[
         OpenWeatherTools(
-            enable_get_current_weather=True,
-            enable_get_weather_forecast=False,
-            enable_get_air_pollution=False,
-            enable_geocode_location=True,
+            enable_current_weather=True,
+            enable_forecast=True,
+            enable_air_pollution=True,
+            enable_geocoding=True,
             units="metric",
         )
     ],
@@ -47,10 +47,10 @@ agent_specific = Agent(
 agent = Agent(
     tools=[
         OpenWeatherTools(
-            enable_get_current_weather=True,
-            enable_get_weather_forecast=True,
-            enable_get_air_pollution=True,
-            enable_geocode_location=True,
+            enable_current_weather=True,
+            enable_forecast=True,
+            enable_air_pollution=True,
+            enable_geocoding=True,
             units="imperial",  # Options: 'standard', 'metric', 'imperial'
         )
     ],

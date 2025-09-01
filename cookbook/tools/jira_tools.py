@@ -18,7 +18,6 @@ agent_specific = Agent(
             enable_search_issues=True,
             enable_get_issue=True,
             enable_create_issue=False,
-            enable_update_issue=False,
         )
     ],
     markdown=True,
@@ -31,7 +30,6 @@ agent = Agent(
             enable_search_issues=True,
             enable_get_issue=True,
             enable_create_issue=True,
-            enable_update_issue=True,
         )
     ],
     markdown=True,

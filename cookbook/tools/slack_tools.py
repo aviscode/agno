@@ -19,25 +19,13 @@ agent_specific = Agent(
         SlackTools(
             enable_send_message=True,
             enable_list_channels=True,
-            enable_get_channel_messages=False,
-            enable_upload_file=False,
+            enable_get_channel_history=False,
+            enable_send_message_thread=False,
         )
     ],
     markdown=True,
 )
 
-# Example 3: Default behavior with all functions enabled
-agent = Agent(
-    tools=[
-        SlackTools(
-            enable_send_message=True,
-            enable_list_channels=True,
-            enable_get_channel_messages=True,
-            enable_upload_file=True,
-        )
-    ],
-    markdown=True,
-)
 
 # Example usage with all functions enabled
 print("=== Example 1: Using all Slack functions ===")
@@ -52,16 +40,4 @@ print(
 )
 agent_specific.print_response(
     "Send a message 'Hello from limited bot!' to the channel #bot-test", markdown=True
-)
-
-# Example usage with default configuration
-print("\n=== Example 3: Default Slack agent usage ===")
-agent.print_response(
-    "Send a message 'Hello from Agno!' to the channel #bot-test", markdown=True
-)
-
-agent.print_response("List all channels in our Slack workspace", markdown=True)
-
-agent.print_response(
-    "Get the last 10 messages from the channel #random-junk", markdown=True
 )

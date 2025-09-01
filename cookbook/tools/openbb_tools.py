@@ -15,11 +15,11 @@ agent_all = Agent(
 agent_specific = Agent(
     tools=[
         OpenBBTools(
-            enable_get_company_info=True,
-            enable_get_historical_stock_data=True,
-            enable_get_current_stock_price=False,
-            enable_get_market_news=False,
-            enable_get_financial_ratios=False,
+            enable_get_stock_price=True,
+            enable_search_company_symbol=True,
+            enable_get_company_news=True,
+            enable_get_company_profile=True,
+            enable_get_price_targets=True,
         )
     ],
     markdown=True,
@@ -29,11 +29,11 @@ agent_specific = Agent(
 agent = Agent(
     tools=[
         OpenBBTools(
-            enable_get_company_info=True,
-            enable_get_historical_stock_data=True,
-            enable_get_current_stock_price=True,
-            enable_get_market_news=True,
-            enable_get_financial_ratios=True,
+            enable_get_stock_price=True,
+            enable_search_company_symbol=True,
+            enable_get_company_news=False,
+            enable_get_company_profile=False,
+            enable_get_price_targets=False,
         )
     ],
     markdown=True,
