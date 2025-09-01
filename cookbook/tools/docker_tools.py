@@ -23,7 +23,6 @@ try:
             "remove_image",
             "remove_volume",
             "remove_network",
-            "delete_file",
         ]
     )
 

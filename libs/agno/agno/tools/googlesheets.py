@@ -112,6 +112,11 @@ class GoogleSheetsTools(Toolkit):
             creds_path (Optional[str]): Path to credentials file.
             token_path (Optional[str]): Path to token file.
             oauth_port (int): Port to use for OAuth authentication. Defaults to 0.
+            enable_read_sheet (bool): Enable reading from a sheet.
+            enable_create_sheet (bool): Enable creating a sheet.
+            enable_update_sheet (bool): Enable updating a sheet.
+            enable_create_duplicate_sheet (bool): Enable creating a duplicate sheet.
+            all (bool): Enable all tools.
         """
 
         self.spreadsheet_id = spreadsheet_id

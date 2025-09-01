@@ -29,6 +29,8 @@ class GoogleSearchTools(Toolkit):
         cache_results (bool): Enable caching of search results.
         cache_ttl (int): Time-to-live for cached results in seconds.
         cache_dir (Optional[str]): Directory to store cache files.
+        enable_google_search (bool): Enable Google search.
+        all (bool): Enable all tools.
     """
 
     def __init__(

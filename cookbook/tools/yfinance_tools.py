@@ -28,7 +28,11 @@ agent_full = Agent(
 agent_basic = Agent(
     tools=[
         YFinanceTools(
-            include_tools=["get_stock_price", "get_stock_info", "get_historical_data"]
+            include_tools=[
+                "get_current_stock_price",
+                "get_company_info",
+                "get_historical_stock_prices",
+            ]
         )
     ],
     description="You are a basic stock information specialist focused on price and historical data.",
@@ -46,10 +50,8 @@ agent_simple = Agent(
     tools=[
         YFinanceTools(
             exclude_tools=[
-                "get_financials",  # Complex financial statements
-                "get_balance_sheet",  # Detailed balance sheet data
-                "get_cash_flow",  # Cash flow statements
-                "get_major_holders",  # Ownership data
+                "get_income_statements",  # Complex financial statements
+                "get_key_financial_ratios",  # Detailed financial ratios
             ]
         )
     ],
@@ -69,9 +71,8 @@ agent_analyst = Agent(
         YFinanceTools(
             include_tools=[
                 "get_analyst_recommendations",
-                "get_stock_news",
-                "get_earnings_calendar",
-                "get_stock_price",
+                "get_company_news",
+                "get_current_stock_price",
             ]
         )
     ],
@@ -98,6 +99,12 @@ agent_analyst.print_response(
 
 print("\n=== Full Analysis Example ===")
 agent_full.print_response(
+    "Provide a comprehensive analysis of TSLA including price, fundamentals, and analyst views",
+    markdown=True,
+)
+
+print("\n=== Full Analysis Example ===")
+agent_simple.print_response(
     "Provide a comprehensive analysis of TSLA including price, fundamentals, and analyst views",
     markdown=True,
 )

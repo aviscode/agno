@@ -39,11 +39,6 @@ booking_agent = Agent(
     tools=[
         CalComTools(
             user_timezone="America/New_York",
-            include_tools=[
-                "create_booking",
-                "get_available_slots",
-                "get_upcoming_bookings",
-            ],
         )
     ],
     markdown=True,
@@ -57,7 +52,6 @@ safe_calendar_agent = Agent(
     tools=[
         CalComTools(
             user_timezone="America/New_York",
-            exclude_tools=["cancel_booking", "delete_booking"],
         )
     ],
     markdown=True,

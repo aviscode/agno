@@ -18,4 +18,6 @@ agent = Agent(
     tools=[CalculatorTools()],
     markdown=True,
 )
-agent.print_response("What is 10*5 then to the power of 2, do it step by step")
+simple_calc_agent.print_response(
+    "What is 10*5 then to the power of 2, do it step by step"
+)

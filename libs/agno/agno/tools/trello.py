@@ -39,21 +39,15 @@ class TrelloTools(Toolkit):
             logger.error(f"Error initializing Trello client: {e}")
             self.client = None
 
-        tools: List[Any] = []
-        if create_card:
-            tools.append(self.create_card)
-        if get_board_lists:
-            tools.append(self.get_board_lists)
-        if move_card:
-            tools.append(self.move_card)
-        if get_cards:
-            tools.append(self.get_cards)
-        if create_board:
-            tools.append(self.create_board)
-        if create_list:
-            tools.append(self.create_list)
-        if list_boards:
-            tools.append(self.list_boards)
+        tools: List[Any] = [
+            self.create_card,
+            self.get_board_lists,
+            self.move_card,
+            self.get_cards,
+            self.create_board,
+            self.create_list,
+            self.list_boards,
+        ]
 
         super().__init__(name="trello", tools=tools, **kwargs)
 

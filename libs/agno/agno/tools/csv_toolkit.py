@@ -12,10 +12,6 @@ class CsvTools(Toolkit):
         self,
         csvs: Optional[List[Union[str, Path]]] = None,
         row_limit: Optional[int] = None,
-        read_csvs: bool = True,
-        list_csvs: bool = True,
-        query_csvs: bool = True,
-        read_column_names: bool = True,
         duckdb_connection: Optional[Any] = None,
         duckdb_kwargs: Optional[Dict[str, Any]] = None,
         enable_read_csv_file: bool = True,
@@ -39,13 +35,13 @@ class CsvTools(Toolkit):
         self.duckdb_kwargs: Optional[Dict[str, Any]] = duckdb_kwargs
 
         tools: List[Any] = []
-        if read_csvs or all or enable_read_csv_file:
+        if all or enable_read_csv_file:
             tools.append(self.read_csv_file)
-        if list_csvs or all or enable_list_csv_files:
+        if all or enable_list_csv_files:
             tools.append(self.list_csv_files)
-        if read_column_names or all or enable_get_columns:
+        if all or enable_get_columns:
             tools.append(self.get_columns)
-        if query_csvs or all or enable_query_csv_file:
+        if all or enable_query_csv_file:
             try:
                 import duckdb  # noqa: F401
 

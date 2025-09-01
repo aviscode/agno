@@ -111,17 +111,6 @@ class GmailTools(Toolkit):
         """Initialize GmailTools and authenticate with Gmail API
 
         Args:
-            get_latest_emails (bool): Enable getting latest emails. Defaults to True.
-            get_emails_from_user (bool): Enable getting emails from specific user. Defaults to True.
-            get_unread_emails (bool): Enable getting unread emails. Defaults to True.
-            get_starred_emails (bool): Enable getting starred emails. Defaults to True.
-            get_emails_by_context (bool): Enable getting emails by context. Defaults to True.
-            get_emails_by_date (bool): Enable getting emails by date. Defaults to True.
-            get_emails_by_thread (bool): Enable getting emails by thread. Defaults to True.
-            create_draft_email (bool): Enable creating draft emails. Defaults to True.
-            send_email (bool): Enable sending emails. Defaults to True.
-            search_emails (bool): Enable searching emails. Defaults to True.
-            send_email_reply (bool): Enable sending email replies. Defaults to True.
             creds (Optional[Credentials]): Pre-fetched OAuth credentials. Use this to skip a new auth flow. Defaults to None.
             credentials_path (Optional[str]): Path to credentials file. Defaults to None.
             token_path (Optional[str]): Path to token file. Defaults to None.
@@ -134,6 +123,20 @@ class GmailTools(Toolkit):
         self.service = None
         self.scopes = scopes or self.DEFAULT_SCOPES
         self.port = port
+
+        """ tools functions:
+         enable_get_latest_emails (bool): Enable getting latest emails.
+         enable_get_emails_from_user (bool): Enable getting emails from specific user.
+         enable_get_unread_emails (bool): Enable getting unread emails.
+         enable_get_starred_emails (bool): Enable getting starred emails.
+         enable_get_emails_by_context (bool): Enable getting emails by context.
+         enable_get_emails_by_date (bool): Enable getting emails by date.
+         enable_get_emails_by_thread (bool): Enable getting emails by thread.
+         enable_create_draft_email (bool): Enable creating draft emails.
+         enable_send_email (bool): Enable sending emails.
+         enable_send_email_reply (bool): Enable sending email replies.
+         all (bool): Enable all tools.
+        """
 
         tools: List[Any] = [
             # Reading emails

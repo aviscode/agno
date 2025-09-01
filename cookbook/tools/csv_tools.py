@@ -41,9 +41,9 @@ agent_readonly = Agent(
     tools=[
         CsvTools(
             csvs=[imdb_csv],
-            enable_list_files=True,
-            enable_describe_csv=True,
-            enable_run_query=True,
+            enable_list_csv_files=True,
+            enable_get_columns=True,
+            enable_query_csv_file=True,
             enable_create_csv=False,  # Disable CSV creation
             enable_modify_csv=False,  # Disable CSV modification
         )
@@ -76,10 +76,9 @@ agent_query = Agent(
     tools=[
         CsvTools(
             csvs=[imdb_csv],
-            enable_list_files=True,
-            enable_describe_csv=True,
-            enable_run_query=True,
-            # Disable file creation/modification functions
+            enable_list_csv_files=True,
+            enable_get_columns=True,
+            enable_query_csv_file=True,
         )
     ],
     description="You are a CSV query specialist focused on data analysis and reporting.",
