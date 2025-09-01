@@ -22,7 +22,6 @@ class TavilyTools(Toolkit):
         include_answer: bool = True,
         search_depth: Literal["basic", "advanced"] = "advanced",
         format: Literal["json", "markdown"] = "markdown",
-        use_search_context: bool = False,
         **kwargs,
     ):
         self.api_key = api_key or getenv("TAVILY_API_KEY")
@@ -36,13 +35,12 @@ class TavilyTools(Toolkit):
         self.format: Literal["json", "markdown"] = format
 
         tools: List[Any] = []
-        # Preserve legacy behavior with use_search_context for backward compatibility
-        if use_search_context:
-            if all or enable_web_search_with_tavily:
-                tools.append(self.web_search_with_tavily)
-        else:
-            if all or enable_web_search_using_tavily:
-                tools.append(self.web_search_using_tavily)
+
+        if all or enable_web_search_with_tavily:
+            tools.append(self.web_search_with_tavily)
+
+        if all or enable_web_search_using_tavily:
+            tools.append(self.web_search_using_tavily)
 
         super().__init__(name="tavily_tools", tools=tools, **kwargs)
 

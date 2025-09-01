@@ -30,13 +30,15 @@ agent_full = Agent(
 
 # Example 2: Enable only function listing and invocation
 agent_basic = Agent(
-    tools=[AWSLambdaTools(
-        region_name="us-east-1",
-        enable_list_functions=True,
-        enable_invoke_function=True,
-        enable_create_function=False,  # Disable function creation
-        enable_update_function=False,  # Disable function updates
-    )],
+    tools=[
+        AWSLambdaTools(
+            region_name="us-east-1",
+            enable_list_functions=True,
+            enable_invoke_function=True,
+            enable_create_function=False,  # Disable function creation
+            enable_update_function=False,  # Disable function updates
+        )
+    ],
     name="Lambda Reader Agent",
     description="You are an AWS Lambda specialist focused on reading and invoking existing functions.",
     instructions=[
@@ -64,13 +66,15 @@ agent_comprehensive = Agent(
 
 # Example 4: Invoke-only agent for testing
 agent_tester = Agent(
-    tools=[AWSLambdaTools(
-        region_name="us-east-1",
-        enable_list_functions=True,   # Enable listing for reference
-        enable_invoke_function=True,  # Enable function testing
-        enable_create_function=False, # Disable creation
-        enable_delete_function=False, # Disable deletion (safety)
-    )],
+    tools=[
+        AWSLambdaTools(
+            region_name="us-east-1",
+            enable_list_functions=True,  # Enable listing for reference
+            enable_invoke_function=True,  # Enable function testing
+            enable_create_function=False,  # Disable creation
+            enable_delete_function=False,  # Disable deletion (safety)
+        )
+    ],
     name="Lambda Tester Agent",
     description="You are an AWS Lambda testing specialist focused on safe function execution.",
     instructions=[
@@ -84,18 +88,20 @@ agent_tester = Agent(
 
 # Example usage
 print("=== Basic Lambda Operations Example ===")
-agent_basic.print_response("List all Lambda functions in our AWS account", markdown=True)
+agent_basic.print_response(
+    "List all Lambda functions in our AWS account", markdown=True
+)
 
 print("\n=== Function Testing Example ===")
 agent_tester.print_response(
-    "Invoke the 'hello-world' Lambda function with an empty payload and analyze the results", 
-    markdown=True
+    "Invoke the 'hello-world' Lambda function with an empty payload and analyze the results",
+    markdown=True,
 )
 
 print("\n=== Comprehensive Management Example ===")
 agent_comprehensive.print_response(
     "Provide an overview of our Lambda environment including function count, runtimes, and recent activity",
-    markdown=True
+    markdown=True,
 )
 
 # Note: Make sure you have the necessary AWS credentials set up in your environment

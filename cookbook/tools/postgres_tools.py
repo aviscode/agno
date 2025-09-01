@@ -25,7 +25,12 @@ agent_readonly = Agent(
             user="ai",
             password="ai",
             table_schema="ai",
-            include_tools=["show_tables", "describe_table", "summarize_table", "inspect_query"],
+            include_tools=[
+                "show_tables",
+                "describe_table",
+                "summarize_table",
+                "inspect_query",
+            ],
         )
     ]
 )

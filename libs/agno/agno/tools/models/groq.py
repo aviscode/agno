@@ -39,7 +39,7 @@ class GroqTools(Toolkit):
             tools.append(self.translate_audio)
         if all or enable_generate_speech:
             tools.append(self.generate_speech)
-        
+
         super().__init__(name="groq_tools", tools=tools, **kwargs)
 
         self.api_key = api_key or getenv("GROQ_API_KEY")

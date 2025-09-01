@@ -7,12 +7,24 @@ try:
 
     # Example 1: Include specific Docker functions for container management
     container_tools = DockerTools(
-        include_tools=["list_containers", "start_container", "stop_container", "get_container_logs", "inspect_container"]
+        include_tools=[
+            "list_containers",
+            "start_container",
+            "stop_container",
+            "get_container_logs",
+            "inspect_container",
+        ]
     )
 
     # Example 2: Exclude dangerous functions (like remove operations)
     safe_docker_tools = DockerTools(
-        exclude_tools=["remove_container", "remove_image", "remove_volume", "remove_network", "delete_file"]
+        exclude_tools=[
+            "remove_container",
+            "remove_image",
+            "remove_volume",
+            "remove_network",
+            "delete_file",
+        ]
     )
 
     # Example 3: Include all functions (default behavior)

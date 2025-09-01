@@ -14,7 +14,7 @@ from agno.utils.log import log_info, logger
 class SpiderTools(Toolkit):
     """
     Spider is a toolkit for web searching, scraping, and crawling.
-    
+
     Args:
         enable_search (bool): Enable web search functionality. Default is True.
         enable_scrape (bool): Enable web scraping functionality. Default is True.
@@ -24,7 +24,7 @@ class SpiderTools(Toolkit):
         url (Optional[str]): Default URL for operations.
         optional_params (Optional[dict]): Additional parameters for operations.
     """
-    
+
     def __init__(
         self,
         max_results: Optional[int] = None,

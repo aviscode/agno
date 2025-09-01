@@ -17,7 +17,7 @@ agent_full = Agent(
     description="You are an Airflow specialist with full DAG management capabilities.",
     instructions=[
         "Help users create, read, and manage Airflow DAGs",
-        "Ensure DAG files follow Airflow best practices", 
+        "Ensure DAG files follow Airflow best practices",
         "Provide clear explanations of DAG structure and components",
     ],
     markdown=True,
@@ -25,11 +25,13 @@ agent_full = Agent(
 
 # Example 2: Enable specific functions using enable_ flags
 agent_readonly = Agent(
-    tools=[AirflowTools(
-        dags_dir="tmp/dags",
-        enable_save_dag=False,   # Disable DAG creation
-        enable_read_dag=True,    # Enable DAG reading
-    )],
+    tools=[
+        AirflowTools(
+            dags_dir="tmp/dags",
+            enable_save_dag=False,  # Disable DAG creation
+            enable_read_dag=True,  # Enable DAG reading
+        )
+    ],
     description="You are an Airflow analyst focused on reading and analyzing existing DAGs.",
     instructions=[
         "Analyze existing DAG files and provide insights",
@@ -41,11 +43,13 @@ agent_readonly = Agent(
 
 # Example 3: Enable all functions explicitly
 agent_explicit = Agent(
-    tools=[AirflowTools(
-        dags_dir="tmp/dags", 
-        enable_save_dag=True,
-        enable_read_dag=True,
-    )],
+    tools=[
+        AirflowTools(
+            dags_dir="tmp/dags",
+            enable_save_dag=True,
+            enable_read_dag=True,
+        )
+    ],
     description="You are an Airflow developer with explicit permissions for all DAG operations.",
     instructions=[
         "Create and manage Airflow DAGs with best practices",
@@ -55,7 +59,7 @@ agent_explicit = Agent(
     markdown=True,
 )
 
-# Example 4: Using the 'all=True' pattern  
+# Example 4: Using the 'all=True' pattern
 agent_all = Agent(
     tools=[AirflowTools(dags_dir="tmp/dags", all=True)],  # Enable all functions
     description="You are a comprehensive Airflow manager with all capabilities enabled.",

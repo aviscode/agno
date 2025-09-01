@@ -12,7 +12,7 @@ class AirflowTools(Toolkit):
         enable_save_dag_file: bool = True,
         enable_read_dag_file: bool = True,
         all: bool = False,
-        **kwargs
+        **kwargs,
     ):
         """
         quick start to work with airflow : https://airflow.apache.org/docs/apache-airflow/stable/start.html

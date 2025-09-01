@@ -38,7 +38,7 @@ class GeminiTools(Toolkit):
             tools.append(self.generate_image)
         if all or enable_generate_video:
             tools.append(self.generate_video)
-        
+
         super().__init__(name="gemini_tools", tools=tools, **kwargs)
 
         # Set mode and credentials: use only provided vertexai parameter

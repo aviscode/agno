@@ -9,6 +9,7 @@ Run: `pip install pandas` to install the dependencies
 """
 
 from pathlib import Path
+
 import httpx
 from agno.agent import Agent
 from agno.tools.csv_toolkit import CsvTools
@@ -37,14 +38,16 @@ agent_full = Agent(
 
 # Example 2: Enable specific functions for read-only analysis
 agent_readonly = Agent(
-    tools=[CsvTools(
-        csvs=[imdb_csv],
-        enable_list_files=True,
-        enable_describe_csv=True,
-        enable_run_query=True,
-        enable_create_csv=False,     # Disable CSV creation
-        enable_modify_csv=False,     # Disable CSV modification
-    )],
+    tools=[
+        CsvTools(
+            csvs=[imdb_csv],
+            enable_list_files=True,
+            enable_describe_csv=True,
+            enable_run_query=True,
+            enable_create_csv=False,  # Disable CSV creation
+            enable_modify_csv=False,  # Disable CSV modification
+        )
+    ],
     description="You are a CSV data analyst focused on reading and analyzing existing data.",
     instructions=[
         "Analyze existing CSV files without modifications",
@@ -70,13 +73,15 @@ agent_comprehensive = Agent(
 
 # Example 4: Query-focused agent
 agent_query = Agent(
-    tools=[CsvTools(
-        csvs=[imdb_csv],
-        enable_list_files=True,
-        enable_describe_csv=True,
-        enable_run_query=True,
-        # Disable file creation/modification functions
-    )],
+    tools=[
+        CsvTools(
+            csvs=[imdb_csv],
+            enable_list_files=True,
+            enable_describe_csv=True,
+            enable_run_query=True,
+            # Disable file creation/modification functions
+        )
+    ],
     description="You are a CSV query specialist focused on data analysis and reporting.",
     instructions=[
         "Execute analytical queries on CSV data",
@@ -90,22 +95,22 @@ agent_query = Agent(
 print("=== Full CSV Analysis Example ===")
 print("Using comprehensive agent for complete CSV operations")
 agent_full.print_response(
-    "Analyze the IMDB movie dataset. Show me the top 10 highest-rated movies and their directors.", 
-    markdown=True
+    "Analyze the IMDB movie dataset. Show me the top 10 highest-rated movies and their directors.",
+    markdown=True,
 )
 
 print("\n=== Read-Only Analysis Example ===")
 print("Using read-only agent for data exploration")
 agent_readonly.print_response(
     "What are the key statistics about the movie ratings and revenue in this dataset?",
-    markdown=True
+    markdown=True,
 )
 
 print("\n=== Query-Focused Example ===")
 print("Using query specialist for targeted analysis")
 agent_query.print_response(
     "Find movies from the year 2016 with ratings above 8.0 and show their genres.",
-    markdown=True
+    markdown=True,
 )
 
 # Optional: Interactive CLI mode

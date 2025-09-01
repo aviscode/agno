@@ -15,11 +15,13 @@ from agno.tools.crawl4ai import Crawl4aiTools
 # Example 1: All functions enabled with pruning (default behavior)
 agent_full = Agent(
     model=OpenAIChat(id="gpt-4o"),
-    tools=[Crawl4aiTools(use_pruning=True)],  # All functions enabled with content pruning
+    tools=[
+        Crawl4aiTools(use_pruning=True)
+    ],  # All functions enabled with content pruning
     description="You are a comprehensive web research assistant with all crawling capabilities.",
     instructions=[
         "Use Crawl4AI tools to extract information from web pages",
-        "Provide detailed summaries and analysis of web content", 
+        "Provide detailed summaries and analysis of web content",
         "Handle various content types including articles, documentation, and repositories",
         "Use content pruning to focus on main content and reduce noise",
     ],
@@ -29,13 +31,15 @@ agent_full = Agent(
 # Example 2: Enable specific crawling functions
 agent_basic = Agent(
     model=OpenAIChat(id="gpt-4o"),
-    tools=[Crawl4aiTools(
-        use_pruning=True,
-        enable_crawl_page=True,
-        enable_extract_content=True,
-        enable_extract_links=False,      # Disable link extraction
-        enable_take_screenshot=False,    # Disable screenshot functionality
-    )],
+    tools=[
+        Crawl4aiTools(
+            use_pruning=True,
+            enable_crawl_page=True,
+            enable_extract_content=True,
+            enable_extract_links=False,  # Disable link extraction
+            enable_take_screenshot=False,  # Disable screenshot functionality
+        )
+    ],
     description="You are a basic web content extractor focused on page content only.",
     instructions=[
         "Extract and summarize main content from web pages",
@@ -63,13 +67,15 @@ agent_comprehensive = Agent(
 # Example 4: Screenshot and visual analysis focused
 agent_visual = Agent(
     model=OpenAIChat(id="gpt-4o"),
-    tools=[Crawl4aiTools(
-        use_pruning=False,               # Don't prune for visual analysis
-        enable_crawl_page=True,
-        enable_take_screenshot=True,
-        enable_extract_content=False,    # Focus on visual, not text
-        enable_analyze_layout=True,      # Assuming this function exists
-    )],
+    tools=[
+        Crawl4aiTools(
+            use_pruning=False,  # Don't prune for visual analysis
+            enable_crawl_page=True,
+            enable_take_screenshot=True,
+            enable_extract_content=False,  # Focus on visual, not text
+            enable_analyze_layout=True,  # Assuming this function exists
+        )
+    ],
     description="You are a web visual analyst focused on page screenshots and layout analysis.",
     instructions=[
         "Take screenshots of web pages and analyze their visual layout",

@@ -33,7 +33,9 @@ agent = Agent(
 
 # Example usage with all functions enabled
 print("=== Example 1: Using all PubMed functions ===")
-agent_all.print_response("Tell me about ulcerative colitis and find the latest research.")
+agent_all.print_response(
+    "Tell me about ulcerative colitis and find the latest research."
+)
 
 # Example usage with specific functions only
 print("\n=== Example 2: Using specific PubMed functions (search only) ===")

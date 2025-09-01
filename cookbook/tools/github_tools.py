@@ -37,7 +37,13 @@ agent = Agent(
     ],
     tools=[
         GithubTools(
-            include_tools=["search_repositories", "get_repository", "list_repositories", "get_pull_requests", "list_issues"]
+            include_tools=[
+                "search_repositories",
+                "get_repository",
+                "list_repositories",
+                "get_pull_requests",
+                "list_issues",
+            ]
         )
     ],
 )
@@ -50,7 +56,13 @@ agent_safe = Agent(
     ],
     tools=[
         GithubTools(
-            exclude_tools=["delete_repository", "create_repository", "create_issue", "create_pull_request", "delete_file"]
+            exclude_tools=[
+                "delete_repository",
+                "create_repository",
+                "create_issue",
+                "create_pull_request",
+                "delete_file",
+            ]
         )
     ],
 )

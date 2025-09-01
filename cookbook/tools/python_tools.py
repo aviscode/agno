@@ -17,7 +17,7 @@ agent_specific = Agent(
     tools=[
         PythonTools(
             base_dir=Path("tmp/python"),
-            include_tools=["save_to_file_and_run", "run_python_code"]
+            include_tools=["save_to_file_and_run", "run_python_code"],
         )
     ],
     instructions=["You can only save and run Python code, no package installation."],
@@ -30,7 +30,7 @@ agent_safe = Agent(
     tools=[
         PythonTools(
             base_dir=Path("tmp/python"),
-            exclude_tools=["pip_install_package", "uv_pip_install_package"]
+            exclude_tools=["pip_install_package", "uv_pip_install_package"],
         )
     ],
     instructions=["You can run Python code but cannot install packages."],

@@ -41,9 +41,7 @@ todoist_agent_readonly = Agent(
     id="todoist-agent-readonly",
     model=Gemini("gemini-2.0-flash-exp"),
     tools=[
-        TodoistTools(
-            include_tools=["get_task", "get_active_tasks", "get_projects"]
-        )
+        TodoistTools(include_tools=["get_task", "get_active_tasks", "get_projects"])
     ],
     markdown=True,
 )
@@ -58,11 +56,7 @@ todoist_agent_safe = Agent(
     ],
     id="todoist-agent-safe",
     model=Gemini("gemini-2.0-flash-exp"),
-    tools=[
-        TodoistTools(
-            exclude_tools=["delete_task"]
-        )
-    ],
+    tools=[TodoistTools(exclude_tools=["delete_task"])],
     markdown=True,
 )
 

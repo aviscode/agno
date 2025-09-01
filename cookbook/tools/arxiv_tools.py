@@ -25,14 +25,16 @@ agent_full = Agent(
 
 # Example 2: Enable specific search functions
 agent_search_only = Agent(
-    tools=[ArxivTools(
-        enable_search_papers=True,
-        enable_get_paper_details=False,  # Disable detailed paper analysis
-    )],
+    tools=[
+        ArxivTools(
+            enable_search_papers=True,
+            enable_get_paper_details=False,  # Disable detailed paper analysis
+        )
+    ],
     description="You are a research search specialist focused on finding relevant papers.",
     instructions=[
         "Search for academic papers based on keywords and topics",
-        "Provide basic paper information and abstracts", 
+        "Provide basic paper information and abstracts",
         "Focus on broad literature discovery",
     ],
     markdown=True,
@@ -52,11 +54,13 @@ agent_comprehensive = Agent(
 
 # Example 4: Custom configuration for specific research needs
 agent_focused = Agent(
-    tools=[ArxivTools(
-        enable_search_papers=True,
-        enable_get_paper_details=True,
-        # Add other enable_ flags as needed based on available functions
-    )],
+    tools=[
+        ArxivTools(
+            enable_search_papers=True,
+            enable_get_paper_details=True,
+            # Add other enable_ flags as needed based on available functions
+        )
+    ],
     description="You are a focused research assistant for specific academic domains.",
     instructions=[
         "Conduct targeted searches in specific academic fields",
@@ -72,12 +76,11 @@ agent_full.print_response("Search arxiv for 'language models'", markdown=True)
 
 print("\n=== Focused Research Example ===")
 agent_focused.print_response(
-    "Find recent papers on 'transformer architectures' and provide detailed analysis", 
-    markdown=True
+    "Find recent papers on 'transformer architectures' and provide detailed analysis",
+    markdown=True,
 )
 
-print("\n=== Search-Only Example ===") 
+print("\n=== Search-Only Example ===")
 agent_search_only.print_response(
-    "Search for papers related to 'machine learning interpretability'",
-    markdown=True
+    "Search for papers related to 'machine learning interpretability'", markdown=True
 )

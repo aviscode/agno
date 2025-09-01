@@ -22,7 +22,7 @@ OpenAITTSFormat = Literal["mp3", "opus", "aac", "flac", "wav", "pcm"]
 
 class OpenAITools(Toolkit):
     """Tools for interacting with OpenAI API.
-    
+
     Args:
         api_key (str, optional): OpenAI API key. Retrieved from OPENAI_API_KEY env variable if not provided.
         enable_transcription (bool): Enable audio transcription functionality. Default is True.

@@ -8,12 +8,7 @@ from agno.tools.giphy import GiphyTools
 gif_agent = Agent(
     name="Gif Generator Agent",
     model=OpenAIChat(id="gpt-4o"),
-    tools=[
-        GiphyTools(
-            limit=5,
-            enable_search_gifs=True
-        )
-    ],
+    tools=[GiphyTools(limit=5, enable_search_gifs=True)],
     description="You are an AI agent that can generate gifs using Giphy.",
     instructions=[
         "When the user asks you to create a gif, come up with the appropriate Giphy query and use the `search_gifs` tool to find the appropriate gif.",

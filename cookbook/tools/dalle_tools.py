@@ -7,10 +7,7 @@ from agno.tools.dalle import DalleTools
 from agno.utils.media import download_image
 
 # Example 1: Basic DALL-E agent with all functions enabled
-agent = Agent(
-    tools=[DalleTools(all=True)], 
-    name="DALL-E Image Generator"
-)
+agent = Agent(tools=[DalleTools(all=True)], name="DALL-E Image Generator")
 
 # Example 2: Enable specific DALL-E functions
 agent_specific = Agent(
@@ -19,19 +16,15 @@ agent_specific = Agent(
             enable_create_image=True,
             model="dall-e-3",
             size="1024x1024",
-            quality="standard"
+            quality="standard",
         )
     ],
-    name="Basic DALL-E Generator"
+    name="Basic DALL-E Generator",
 )
 
 # Example 3: High-quality custom DALL-E generator
 custom_dalle = DalleTools(
-    all=True,
-    model="dall-e-3", 
-    size="1792x1024", 
-    quality="hd", 
-    style="natural"
+    all=True, model="dall-e-3", size="1792x1024", quality="hd", style="natural"
 )
 
 agent_custom = Agent(

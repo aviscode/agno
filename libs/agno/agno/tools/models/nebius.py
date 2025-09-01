@@ -45,7 +45,7 @@ class NebiusTools(Toolkit):
         tools = []
         if all or enable_generate_image:
             tools.append(self.generate_image)
-        
+
         super().__init__(name="nebius_tools", tools=tools, **kwargs)
 
         self.api_key = api_key or getenv("NEBIUS_API_KEY")

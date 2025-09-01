@@ -16,7 +16,7 @@ agent_full = Agent(
     instructions=[
         "Help users scrape and analyze website content",
         "Provide detailed summaries and insights from web pages",
-        "Handle various website formats and structures", 
+        "Handle various website formats and structures",
         "Ensure respectful scraping practices",
     ],
     markdown=True,
@@ -24,12 +24,14 @@ agent_full = Agent(
 
 # Example 2: Enable specific scraping functions
 agent_basic = Agent(
-    tools=[WebsiteTools(
-        enable_search_page=True,
-        enable_extract_content=True,
-        enable_extract_links=False,    # Disable link extraction
-        enable_analyze_structure=False, # Disable structure analysis
-    )],
+    tools=[
+        WebsiteTools(
+            enable_search_page=True,
+            enable_extract_content=True,
+            enable_extract_links=False,  # Disable link extraction
+            enable_analyze_structure=False,  # Disable structure analysis
+        )
+    ],
     description="You are a basic web scraper focused on content extraction only.",
     instructions=[
         "Search and extract main content from web pages",
@@ -55,12 +57,14 @@ agent_comprehensive = Agent(
 
 # Example 4: Read-only web research agent
 agent_researcher = Agent(
-    tools=[WebsiteTools(
-        enable_search_page=True,
-        enable_extract_content=True,
-        enable_analyze_structure=True,
-        enable_modify_content=False,   # Disable any modification capabilities
-    )],
+    tools=[
+        WebsiteTools(
+            enable_search_page=True,
+            enable_extract_content=True,
+            enable_analyze_structure=True,
+            enable_modify_content=False,  # Disable any modification capabilities
+        )
+    ],
     description="You are a web research specialist focused on analyzing existing content.",
     instructions=[
         "Research and analyze web content without modifications",
@@ -75,7 +79,7 @@ agent_researcher = Agent(
 print("=== Basic Web Content Search Example ===")
 agent_basic.print_response(
     "Search web page: 'https://docs.agno.com/introduction' and summarize the key concepts",
-    markdown=True
+    markdown=True,
 )
 
 print("\n=== Comprehensive Website Analysis Example ===")

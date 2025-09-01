@@ -6,9 +6,7 @@ from agno.tools.brightdata import BrightDataTools
 scraping_agent = Agent(
     model=OpenAIChat(id="gpt-4o"),
     tools=[
-        BrightDataTools(
-            include_tools=["web_scraper", "serp_google", "serp_amazon"]
-        )
+        BrightDataTools(include_tools=["web_scraper", "serp_google", "serp_amazon"])
     ],
     markdown=True,
 )
@@ -16,11 +14,7 @@ scraping_agent = Agent(
 # Example 2: Exclude screenshot functions for performance
 no_screenshot_agent = Agent(
     model=OpenAIChat(id="gpt-4o"),
-    tools=[
-        BrightDataTools(
-            exclude_tools=["screenshot_generator"]
-        )
-    ],
+    tools=[BrightDataTools(exclude_tools=["screenshot_generator"])],
     markdown=True,
 )
 

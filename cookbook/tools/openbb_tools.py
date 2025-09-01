@@ -46,7 +46,9 @@ agent_all.print_response(
 )
 
 # Example usage with specific functions only
-print("\n=== Example 2: Using specific OpenBB functions (company info + historical data) ===")
+print(
+    "\n=== Example 2: Using specific OpenBB functions (company info + historical data) ==="
+)
 agent_specific.print_response(
     "Get company information and historical stock data for Tesla (TSLA)"
 )

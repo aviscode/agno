@@ -49,13 +49,15 @@ agent_full = Agent(
 # Example 2: Enable specific camera functions
 agent_camera = Agent(
     name="Camera Specialist",
-    tools=[OpenCVTools(
-        show_preview=True,
-        enable_capture_image=True,
-        enable_capture_video=True,
-        enable_process_image=False,  # Disable image processing
-        enable_detect_objects=False, # Disable object detection
-    )],
+    tools=[
+        OpenCVTools(
+            show_preview=True,
+            enable_capture_image=True,
+            enable_capture_video=True,
+            enable_process_image=False,  # Disable image processing
+            enable_detect_objects=False,  # Disable object detection
+        )
+    ],
     description="You are a camera specialist focused on capturing images and videos.",
     instructions=[
         "Specialize in capturing images and videos from webcam",
@@ -83,13 +85,15 @@ agent_comprehensive = Agent(
 # Example 4: Processing-focused agent (no camera capture)
 agent_processor = Agent(
     name="Image Processor",
-    tools=[OpenCVTools(
-        show_preview=False,          # Disable live preview
-        enable_capture_image=False,  # Disable camera capture
-        enable_capture_video=False,  # Disable video capture
-        enable_process_image=True,   # Enable image processing
-        enable_analyze_image=True,   # Enable image analysis
-    )],
+    tools=[
+        OpenCVTools(
+            show_preview=False,  # Disable live preview
+            enable_capture_image=False,  # Disable camera capture
+            enable_capture_video=False,  # Disable video capture
+            enable_process_image=True,  # Enable image processing
+            enable_analyze_image=True,  # Enable image analysis
+        )
+    ],
     description="You are an image processing specialist focused on analyzing existing images.",
     instructions=[
         "Process and analyze existing images without camera operations",

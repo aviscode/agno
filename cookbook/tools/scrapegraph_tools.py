@@ -48,7 +48,9 @@ Use any appropriate scraping method to extract comprehensive information from ht
 """)
 
 # Example usage with specific functions only
-print("\n=== Example 2: Using specific ScrapeGraph functions (smartscraper + markdownify) ===")
+print(
+    "\n=== Example 2: Using specific ScrapeGraph functions (smartscraper + markdownify) ==="
+)
 agent_specific.print_response("""
 Use smartscraper to extract the following from https://www.wired.com/category/science/:
 - News articles

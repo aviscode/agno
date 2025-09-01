@@ -14,7 +14,7 @@ except ImportError:
 class ValyuTools(Toolkit):
     """
     Valyu is a toolkit for academic and web search capabilities.
-    
+
     Args:
         api_key (Optional[str]): Valyu API key. Retrieved from VALYU_API_KEY env variable if not provided.
         enable_academic_search (bool): Enable academic sources search functionality. Default is True.
@@ -32,7 +32,7 @@ class ValyuTools(Toolkit):
         max_price (float): Maximum price for API calls. Default is 30.0.
         tool_call_mode (bool): Enable tool call mode. Default is False.
     """
-    
+
     def __init__(
         self,
         api_key: Optional[str] = None,

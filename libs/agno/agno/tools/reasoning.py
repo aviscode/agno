@@ -12,10 +12,10 @@ class ReasoningTools(Toolkit):
         enable_think: bool = True,
         enable_analyze: bool = True,
         all: bool = False,
-        instructions: Optional[str] = None, 
+        instructions: Optional[str] = None,
         add_instructions: bool = False,
         add_few_shot: bool = False,
-        few_shot_examples: Optional[str] = None,    
+        few_shot_examples: Optional[str] = None,
         **kwargs,
     ):
         """A toolkit that provides step-by-step reasoning tools: Think and Analyze."""

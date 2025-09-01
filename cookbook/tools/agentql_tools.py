@@ -21,15 +21,15 @@ agent = Agent(
         AgentQLTools(
             enable_scrape_website=True,
             enable_custom_scrape_website=False,
-            agentql_query="your_query_here"
+            agentql_query="your_query_here",
         )
-    ]
+    ],
 )
 
 # Example 2: Enable all AgentQL functions
 agent_all = Agent(
     model=OpenAIChat(id="gpt-4o"),
-    tools=[AgentQLTools(all=True, agentql_query="your_query_here")]
+    tools=[AgentQLTools(all=True, agentql_query="your_query_here")],
 )
 
 # Example 3: Custom query with specific function enabled
@@ -46,11 +46,15 @@ custom_agent = Agent(
         AgentQLTools(
             enable_scrape_website=True,
             enable_custom_scrape_website=True,
-            agentql_query=custom_query
+            agentql_query=custom_query,
         )
-    ]
+    ],
 )
 
 # Test the agents
-agent.print_response("Scrape the main content from https://docs.agno.com/introduction", markdown=True)
-custom_agent.print_response("Extract title and content from https://docs.agno.com/introduction", markdown=True)
+agent.print_response(
+    "Scrape the main content from https://docs.agno.com/introduction", markdown=True
+)
+custom_agent.print_response(
+    "Extract title and content from https://docs.agno.com/introduction", markdown=True
+)

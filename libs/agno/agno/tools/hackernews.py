@@ -10,14 +10,16 @@ from agno.utils.log import log_debug, logger
 class HackerNewsTools(Toolkit):
     """
     HackerNews is a tool for getting top stories from Hacker News.
-    
+
     Args:
         enable_get_top_stories (bool): Enable getting top stories from Hacker News. Default is True.
         enable_get_user_details (bool): Enable getting user details from Hacker News. Default is True.
         all (bool): Enable all tools. Overrides individual flags when True. Default is False.
     """
 
-    def __init__(self, enable_get_top_stories: bool = True, enable_get_user_details: bool = True, all: bool = False, **kwargs):
+    def __init__(
+        self, enable_get_top_stories: bool = True, enable_get_user_details: bool = True, all: bool = False, **kwargs
+    ):
         tools: List[Any] = []
         if all or enable_get_top_stories:
             tools.append(self.get_top_hackernews_stories)

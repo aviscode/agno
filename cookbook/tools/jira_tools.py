@@ -39,7 +39,9 @@ agent = Agent(
 
 # Example usage with all functions enabled
 print("=== Example 1: Using all Jira functions ===")
-agent_all.print_response("Find all issues in project PROJ and create a summary report", markdown=True)
+agent_all.print_response(
+    "Find all issues in project PROJ and create a summary report", markdown=True
+)
 
 # Example usage with specific functions only
 print("\n=== Example 2: Using specific Jira functions (read-only) ===")

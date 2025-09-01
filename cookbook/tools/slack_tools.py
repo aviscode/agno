@@ -42,11 +42,14 @@ agent = Agent(
 # Example usage with all functions enabled
 print("=== Example 1: Using all Slack functions ===")
 agent_all.print_response(
-    "Send a message 'Hello from Agno with all functions!' to the channel #bot-test and then list all channels", markdown=True
+    "Send a message 'Hello from Agno with all functions!' to the channel #bot-test and then list all channels",
+    markdown=True,
 )
 
 # Example usage with specific functions only
-print("\n=== Example 2: Using specific Slack functions (send message + list channels) ===")
+print(
+    "\n=== Example 2: Using specific Slack functions (send message + list channels) ==="
+)
 agent_specific.print_response(
     "Send a message 'Hello from limited bot!' to the channel #bot-test", markdown=True
 )

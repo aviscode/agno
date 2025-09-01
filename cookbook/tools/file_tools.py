@@ -7,6 +7,7 @@ FileTools is a small tool (<6 functions) so it uses enable_ flags.
 """
 
 from pathlib import Path
+
 from agno.agent import Agent
 from agno.tools.file import FileTools
 
@@ -25,18 +26,20 @@ agent_full = Agent(
 
 # Example 2: Enable only file reading and searching
 agent_readonly = Agent(
-    tools=[FileTools(
-        Path("tmp/file"),
-        enable_read_file=True,
-        enable_search_files=True,
-        enable_list_files=True,
-        enable_write_file=False,     # Disable file writing
-        enable_delete_file=False,    # Disable file deletion
-    )],
+    tools=[
+        FileTools(
+            Path("tmp/file"),
+            enable_read_file=True,
+            enable_search_files=True,
+            enable_list_files=True,
+            enable_write_file=False,  # Disable file writing
+            enable_delete_file=False,  # Disable file deletion
+        )
+    ],
     description="You are a file reader focused on accessing and searching existing files.",
     instructions=[
         "Read and search through existing files",
-        "List file contents and directory structures", 
+        "List file contents and directory structures",
         "Cannot create, modify, or delete files",
         "Focus on information retrieval and file exploration",
     ],
@@ -58,13 +61,15 @@ agent_comprehensive = Agent(
 
 # Example 4: Write-only operations (for content creation)
 agent_writer = Agent(
-    tools=[FileTools(
-        Path("tmp/file"),
-        enable_write_file=True,
-        enable_create_directory=True,  # Assuming this function exists
-        enable_read_file=False,        # Disable file reading
-        enable_search_files=False,     # Disable file searching
-    )],
+    tools=[
+        FileTools(
+            Path("tmp/file"),
+            enable_write_file=True,
+            enable_create_directory=True,  # Assuming this function exists
+            enable_read_file=False,  # Disable file reading
+            enable_search_files=False,  # Disable file searching
+        )
+    ],
     description="You are a content creator focused on writing and organizing new files.",
     instructions=[
         "Create new files and directories",
@@ -84,17 +89,17 @@ agent_full.print_response(
 print("\n=== Read-Only File Operations Example ===")
 agent_readonly.print_response(
     "Search for all files in the directory and list their names and sizes",
-    markdown=True
+    markdown=True,
 )
 
 print("\n=== File Writing Example ===")
 agent_writer.print_response(
     "Create a summary of Python best practices and save it to 'python_guide.txt'",
-    markdown=True
+    markdown=True,
 )
 
 print("\n=== File Search Example ===")
 agent_full.print_response(
     "Search for all files which have an extension '.txt' and save the answer to a new file named 'all_txt_files.txt'",
-    markdown=True
+    markdown=True,
 )

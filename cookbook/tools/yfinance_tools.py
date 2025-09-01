@@ -26,13 +26,11 @@ agent_full = Agent(
 
 # Example 2: Include only basic stock information
 agent_basic = Agent(
-    tools=[YFinanceTools(
-        include_tools=[
-            "get_stock_price",
-            "get_stock_info",
-            "get_historical_data"
-        ]
-    )],
+    tools=[
+        YFinanceTools(
+            include_tools=["get_stock_price", "get_stock_info", "get_historical_data"]
+        )
+    ],
     description="You are a basic stock information specialist focused on price and historical data.",
     instructions=[
         "Provide current stock prices and basic company information",
@@ -45,14 +43,16 @@ agent_basic = Agent(
 
 # Example 3: Exclude complex financial analysis functions
 agent_simple = Agent(
-    tools=[YFinanceTools(
-        exclude_tools=[
-            "get_financials",           # Complex financial statements
-            "get_balance_sheet",        # Detailed balance sheet data
-            "get_cash_flow",           # Cash flow statements
-            "get_major_holders",       # Ownership data
-        ]
-    )],
+    tools=[
+        YFinanceTools(
+            exclude_tools=[
+                "get_financials",  # Complex financial statements
+                "get_balance_sheet",  # Detailed balance sheet data
+                "get_cash_flow",  # Cash flow statements
+                "get_major_holders",  # Ownership data
+            ]
+        )
+    ],
     description="You are a stock analyst focused on market data without complex financial statements.",
     instructions=[
         "Provide stock prices, recommendations, and market trends",
@@ -65,14 +65,16 @@ agent_simple = Agent(
 
 # Example 4: Include only analysis and recommendation functions
 agent_analyst = Agent(
-    tools=[YFinanceTools(
-        include_tools=[
-            "get_analyst_recommendations",
-            "get_stock_news",
-            "get_earnings_calendar",
-            "get_stock_price"
-        ]
-    )],
+    tools=[
+        YFinanceTools(
+            include_tools=[
+                "get_analyst_recommendations",
+                "get_stock_news",
+                "get_earnings_calendar",
+                "get_stock_price",
+            ]
+        )
+    ],
     description="You are an equity research analyst focused on recommendations and market sentiment.",
     instructions=[
         "Provide analyst recommendations and price targets",
@@ -94,8 +96,8 @@ agent_analyst.print_response(
     "Get analyst recommendations and recent news for AAPL", markdown=True
 )
 
-print("\n=== Full Analysis Example ===") 
+print("\n=== Full Analysis Example ===")
 agent_full.print_response(
-    "Provide a comprehensive analysis of TSLA including price, fundamentals, and analyst views", 
-    markdown=True
+    "Provide a comprehensive analysis of TSLA including price, fundamentals, and analyst views",
+    markdown=True,
 )

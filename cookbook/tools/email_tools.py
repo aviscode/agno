@@ -14,7 +14,7 @@ agent = Agent(
             sender_email=sender_email,
             sender_name=sender_name,
             sender_passkey=sender_passkey,
-            enable_email_user=True
+            enable_email_user=True,
         )
     ]
 )
@@ -27,10 +27,13 @@ agent_all = Agent(
             sender_email=sender_email,
             sender_name=sender_name,
             sender_passkey=sender_passkey,
-            all=True
+            all=True,
         )
     ]
 )
 
 # Test the agent
-agent.print_response("Send an email to the receiver with subject 'Test Email' and a friendly greeting message", markdown=True)
+agent.print_response(
+    "Send an email to the receiver with subject 'Test Email' and a friendly greeting message",
+    markdown=True,
+)

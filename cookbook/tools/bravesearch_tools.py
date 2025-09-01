@@ -3,9 +3,7 @@ from agno.tools.bravesearch import BraveSearchTools
 
 # Example 1: Enable specific Brave Search functions
 agent = Agent(
-    tools=[
-        BraveSearchTools(enable_brave_search=True)
-    ],
+    tools=[BraveSearchTools(enable_brave_search=True)],
     description="You are a news agent that helps users find the latest news.",
     instructions=[
         "Given a topic by the user, respond with 4 latest news items about that topic."

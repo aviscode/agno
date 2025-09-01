@@ -19,7 +19,7 @@ class AgentQLTools(Toolkit):
         enable_custom_scrape_website: bool = False,
         all: bool = False,
         agentql_query: str = "",
-        **kwargs
+        **kwargs,
     ):
         self.api_key = api_key or getenv("AGENTQL_API_KEY")
         if not self.api_key:

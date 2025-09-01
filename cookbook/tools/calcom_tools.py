@@ -39,7 +39,11 @@ booking_agent = Agent(
     tools=[
         CalComTools(
             user_timezone="America/New_York",
-            include_tools=["create_booking", "get_available_slots", "get_upcoming_bookings"]
+            include_tools=[
+                "create_booking",
+                "get_available_slots",
+                "get_upcoming_bookings",
+            ],
         )
     ],
     markdown=True,
@@ -47,13 +51,13 @@ booking_agent = Agent(
 
 # Example 2: Exclude cancellation functions for safety
 safe_calendar_agent = Agent(
-    name="Safe Calendar Assistant", 
+    name="Safe Calendar Assistant",
     instructions=[INSTRUCTONS],
     model=OpenAIChat(id="gpt-4"),
     tools=[
         CalComTools(
             user_timezone="America/New_York",
-            exclude_tools=["cancel_booking", "delete_booking"]
+            exclude_tools=["cancel_booking", "delete_booking"],
         )
     ],
     markdown=True,

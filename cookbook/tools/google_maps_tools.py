@@ -43,9 +43,9 @@ agent_search = Agent(
         GoogleMapTools(
             include_tools=[
                 "search_places",
-                "get_place_details", 
+                "get_place_details",
                 "find_place_from_text",
-                "get_nearby_places"
+                "get_nearby_places",
             ]
         ),
     ],
@@ -61,12 +61,12 @@ agent_search = Agent(
 
 # Example 3: Exclude potentially expensive operations
 agent_safe = Agent(
-    name="Safe Maps API Agent", 
+    name="Safe Maps API Agent",
     tools=[
         GoogleMapTools(
             exclude_tools=[
                 "get_distance_matrix",  # Can be expensive with many origins/destinations
-                "get_directions",       # Excludes detailed route calculations
+                "get_directions",  # Excludes detailed route calculations
             ]
         ),
         Crawl4aiTools(max_length=3000),

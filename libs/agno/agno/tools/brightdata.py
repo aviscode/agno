@@ -19,7 +19,7 @@ except ImportError:
 class BrightDataTools(Toolkit):
     """
     BrightData is a toolkit for web scraping, screenshots, search engines, and web data feeds.
-    
+
     Args:
         api_key (Optional[str]): Bright Data API key. Retrieved from BRIGHT_DATA_API_KEY env variable if not provided.
         enable_scrape_markdown (bool): Enable webpage scraping as Markdown. Default is True.
@@ -32,7 +32,7 @@ class BrightDataTools(Toolkit):
         verbose (bool): Enable verbose logging. Default is False.
         timeout (int): Timeout in seconds for operations. Default is 600.
     """
-    
+
     def __init__(
         self,
         api_key: Optional[str] = None,

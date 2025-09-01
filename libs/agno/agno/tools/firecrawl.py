@@ -24,7 +24,7 @@ class CustomJSONEncoder(json.JSONEncoder):
 class FirecrawlTools(Toolkit):
     """
     Firecrawl is a tool for scraping and crawling websites.
-    
+
     Args:
         api_key (Optional[str]): The API key to use for the Firecrawl app.
         enable_scrape (bool): Enable website scraping functionality. Default is True.

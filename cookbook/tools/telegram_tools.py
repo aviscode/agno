@@ -21,7 +21,9 @@ chat_id = "<enter-your-chat-id>"
 # Example 1: All functions enabled (default behavior)
 agent_full = Agent(
     name="telegram-full",
-    tools=[TelegramTools(token=telegram_token, chat_id=chat_id)],  # All functions enabled
+    tools=[
+        TelegramTools(token=telegram_token, chat_id=chat_id)
+    ],  # All functions enabled
     description="You are a comprehensive Telegram bot assistant with all messaging capabilities.",
     instructions=[
         "Help users with all Telegram bot operations",
@@ -35,17 +37,19 @@ agent_full = Agent(
 # Example 2: Enable only message sending
 agent_send_only = Agent(
     name="telegram-sender",
-    tools=[TelegramTools(
-        token=telegram_token,
-        chat_id=chat_id,
-        enable_send_message=True,
-        enable_send_photo=False,     # Disable media sending
-        enable_get_updates=False,    # Disable message receiving
-    )],
+    tools=[
+        TelegramTools(
+            token=telegram_token,
+            chat_id=chat_id,
+            enable_send_message=True,
+            enable_send_photo=False,  # Disable media sending
+            enable_get_updates=False,  # Disable message receiving
+        )
+    ],
     description="You are a Telegram message sender focused on text communication only.",
     instructions=[
         "Send text messages through Telegram bot",
-        "Cannot send media or receive messages", 
+        "Cannot send media or receive messages",
         "Focus on simple text-based communication",
         "Ensure message formatting is clear",
     ],
@@ -54,7 +58,7 @@ agent_send_only = Agent(
 
 # Example 3: Enable all functions using 'all=True' pattern
 agent_comprehensive = Agent(
-    name="telegram-comprehensive", 
+    name="telegram-comprehensive",
     tools=[TelegramTools(token=telegram_token, chat_id=chat_id, all=True)],
     description="You are a full-featured Telegram bot with all capabilities enabled.",
     instructions=[
@@ -69,12 +73,14 @@ agent_comprehensive = Agent(
 # Example 4: Read-only bot (receive messages only)
 agent_receiver = Agent(
     name="telegram-receiver",
-    tools=[TelegramTools(
-        token=telegram_token,
-        chat_id=chat_id,
-        enable_send_message=False,   # Disable sending
-        enable_get_updates=True,     # Enable receiving messages
-    )],
+    tools=[
+        TelegramTools(
+            token=telegram_token,
+            chat_id=chat_id,
+            enable_send_message=False,  # Disable sending
+            enable_get_updates=True,  # Enable receiving messages
+        )
+    ],
     description="You are a Telegram message receiver focused on monitoring conversations.",
     instructions=[
         "Monitor and analyze incoming Telegram messages",
@@ -87,7 +93,9 @@ agent_receiver = Agent(
 
 # Example usage
 print("=== Basic Message Sending Example ===")
-agent_send_only.print_response("Send message to telegram chat a paragraph about the moon")
+agent_send_only.print_response(
+    "Send message to telegram chat a paragraph about the moon"
+)
 
 print("\n=== Comprehensive Bot Example ===")
 agent_comprehensive.print_response("""
@@ -98,4 +106,6 @@ Set up a complete interaction:
 """)
 
 print("\n=== Full-Featured Bot Example ===")
-agent_full.print_response("Send an informative message about the latest space discoveries")
+agent_full.print_response(
+    "Send an informative message about the latest space discoveries"
+)

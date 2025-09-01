@@ -11,13 +11,13 @@ Run: `pip install pandas` to install the dependencies
 from agno.agent import Agent
 from agno.tools.pandas import PandasTools
 
-# Example 1: All functions enabled (default behavior) 
+# Example 1: All functions enabled (default behavior)
 agent_full = Agent(
     tools=[PandasTools()],  # All functions enabled by default
     description="You are a data analyst with full pandas capabilities for comprehensive data analysis.",
     instructions=[
         "Help users with all aspects of pandas data manipulation",
-        "Create, modify, analyze, and visualize DataFrames", 
+        "Create, modify, analyze, and visualize DataFrames",
         "Provide detailed explanations of data operations",
         "Suggest best practices for data analysis workflows",
     ],
@@ -26,12 +26,14 @@ agent_full = Agent(
 
 # Example 2: Enable specific data manipulation functions
 agent_basic = Agent(
-    tools=[PandasTools(
-        enable_create_dataframe=True,
-        enable_read_csv=True,
-        enable_basic_operations=True,  # Assuming this function exists
-        enable_advanced_analytics=False,  # Disable complex analytics
-    )],
+    tools=[
+        PandasTools(
+            enable_create_dataframe=True,
+            enable_read_csv=True,
+            enable_basic_operations=True,  # Assuming this function exists
+            enable_advanced_analytics=False,  # Disable complex analytics
+        )
+    ],
     description="You are a basic data handler focused on DataFrame creation and simple operations.",
     instructions=[
         "Create DataFrames from various data sources",
@@ -57,16 +59,18 @@ agent_comprehensive = Agent(
 
 # Example 4: Read-only data analysis
 agent_readonly = Agent(
-    tools=[PandasTools(
-        enable_create_dataframe=False,   # Disable DataFrame creation
-        enable_read_csv=True,
-        enable_data_analysis=True,       # Assuming this function exists  
-        enable_data_export=False,        # Disable data export
-    )],
+    tools=[
+        PandasTools(
+            enable_create_dataframe=False,  # Disable DataFrame creation
+            enable_read_csv=True,
+            enable_data_analysis=True,  # Assuming this function exists
+            enable_data_export=False,  # Disable data export
+        )
+    ],
     description="You are a data analyst focused on analyzing existing datasets without modifications.",
     instructions=[
         "Analyze existing DataFrames and CSV files",
-        "Provide insights and statistical summaries", 
+        "Provide insights and statistical summaries",
         "Cannot create new data or export results",
         "Focus on read-only data exploration",
     ],
@@ -93,9 +97,12 @@ Create a simple DataFrame with employee data and show basic statistics:
 """)
 
 print("\n=== Comprehensive Analysis Example ===")
-agent_comprehensive.print_response("""
+agent_comprehensive.print_response(
+    """
 Analyze the sales data trends, calculate summary statistics, and provide insights about:
 1. Total sales by product
 2. Average price trends 
 3. Quantity distribution analysis
-""", markdown=True)
+""",
+    markdown=True,
+)

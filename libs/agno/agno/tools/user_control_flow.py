@@ -19,7 +19,7 @@ class UserControlFlowTools(Toolkit):
             self.instructions = self.DEFAULT_INSTRUCTIONS
         else:
             self.instructions = instructions
-        
+
         tools = []
         if all or enable_get_user_input:
             tools.append(self.get_user_input)

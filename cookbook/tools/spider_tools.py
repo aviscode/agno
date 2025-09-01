@@ -13,10 +13,7 @@ agent_all = Agent(
 agent_specific = Agent(
     name="Spider Agent - Search Only",
     tools=[
-        SpiderTools(
-            include_tools=["search"],
-            optional_params={"proxy_enabled": True}
-        )
+        SpiderTools(include_tools=["search"], optional_params={"proxy_enabled": True})
     ],
     instructions=["You can only search the web, no scraping or crawling."],
     markdown=True,
@@ -26,10 +23,7 @@ agent_specific = Agent(
 agent_no_crawl = Agent(
     name="Spider Agent - No Crawling",
     tools=[
-        SpiderTools(
-            exclude_tools=["crawl"],
-            optional_params={"proxy_enabled": True}
-        )
+        SpiderTools(exclude_tools=["crawl"], optional_params={"proxy_enabled": True})
     ],
     instructions=["You can search and scrape but cannot crawl entire websites."],
     markdown=True,

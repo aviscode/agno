@@ -65,7 +65,9 @@ agent_all.print_response(
 )
 
 # Example usage with specific functions only
-print("\n=== Example 2: Using specific OpenWeather functions (current weather + geocoding) ===")
+print(
+    "\n=== Example 2: Using specific OpenWeather functions (current weather + geocoding) ==="
+)
 agent_specific.print_response(
     "What's the current weather in Tokyo?",
     markdown=True,

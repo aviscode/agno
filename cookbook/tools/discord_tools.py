@@ -71,7 +71,8 @@ server_id = "YOUR_SERVER_ID"
 # Example usage with all functions enabled
 print("=== Example 1: Using all Discord functions ===")
 discord_agent_all.print_response(
-    f"Send a message 'Hello from Agno with all functions!' to channel {channel_id}", stream=True
+    f"Send a message 'Hello from Agno with all functions!' to channel {channel_id}",
+    stream=True,
 )
 
 # Example usage with specific functions only

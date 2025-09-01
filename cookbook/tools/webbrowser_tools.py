@@ -6,13 +6,10 @@ from agno.tools.webbrowser import WebBrowserTools
 # Example 1: Enable specific WebBrowser functions
 agent = Agent(
     model=Gemini("gemini-2.0-flash"),
-    tools=[
-        WebBrowserTools(enable_open_page=True), 
-        DuckDuckGoTools(all=True)
-    ],
+    tools=[WebBrowserTools(enable_open_page=True), DuckDuckGoTools(all=True)],
     instructions=[
         "Find related websites and pages using DuckDuckGo",
-        "Use web browser to open the site"
+        "Use web browser to open the site",
     ],
     markdown=True,
 )
@@ -20,13 +17,10 @@ agent = Agent(
 # Example 2: Enable all WebBrowser functions
 agent_all = Agent(
     model=Gemini("gemini-2.0-flash"),
-    tools=[
-        WebBrowserTools(all=True), 
-        DuckDuckGoTools(all=True)
-    ],
+    tools=[WebBrowserTools(all=True), DuckDuckGoTools(all=True)],
     instructions=[
         "Find related websites and pages using DuckDuckGo",
-        "Use web browser to open the site with full functionality"
+        "Use web browser to open the site with full functionality",
     ],
     markdown=True,
 )

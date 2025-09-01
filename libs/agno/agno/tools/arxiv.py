@@ -23,7 +23,7 @@ class ArxivTools(Toolkit):
         enable_read_arxiv_papers: bool = True,
         all: bool = False,
         download_dir: Optional[Path] = None,
-        **kwargs
+        **kwargs,
     ):
         self.client: arxiv.Client = arxiv.Client()
         self.download_dir: Path = download_dir or Path(__file__).parent.joinpath("arxiv_pdfs")
