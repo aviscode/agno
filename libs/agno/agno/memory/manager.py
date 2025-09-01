@@ -283,10 +283,8 @@ class MemoryManager:
             agent_id=agent_id,
             team_id=team_id,
             db=self.db,
-            delete_memories=self.delete_memories,
             update_memories=self.update_memories,
             add_memories=self.add_memories,
-            clear_memories=self.clear_memories
         )
 
         # We refresh from the DB
