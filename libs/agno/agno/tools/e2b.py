@@ -4,7 +4,7 @@ import tempfile
 import time
 from os import fdopen, getenv
 from pathlib import Path
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, Optional, Union
 from uuid import uuid4
 
 from agno.agent import Agent

@@ -26,7 +26,7 @@ def test_initialization_with_selective_operations():
     tools = CalculatorTools(include_tools=["add", "subtract", "exponentiate", "is_prime"])
 
     # Check which functions are registered
-    function_names = [func.name for func in tools.functions.values()] 
+    function_names = [func.name for func in tools.functions.values()]
 
     assert "add" in function_names
     assert "subtract" in function_names

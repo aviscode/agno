@@ -34,12 +34,11 @@ def brightdata_tools():
         api_key="test_api_key",
         serp_zone="test_serp_zone",
         web_unlocker_zone="test_web_unlocker_zone",
-        enable_scrape_markdown=True,    
+        enable_scrape_markdown=True,
         enable_screenshot=True,
         enable_search_engine=True,
         enable_web_data_feed=True,
         verbose=True,
-
     )
 
 
