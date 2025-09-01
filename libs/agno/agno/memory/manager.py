@@ -767,6 +767,8 @@ class MemoryManager:
                 team_id=team_id,
                 enable_add_memory=add_memories,
                 enable_update_memory=update_memories,
+                enable_delete_memory=False,
+                enable_clear_memory=False,
             ),
         )
 
