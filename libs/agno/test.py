@@ -27,14 +27,14 @@ memory_manager_full = MemoryManager(
     db=memory_db,
     add_memories=True,
     update_memories=True, 
-    delete_memories=False,
-    clear_memories=False,
+    delete_memories=True,
+    clear_memories=True,
 )
 
 agent_full = Agent(
     model=OpenAIChat(id="gpt-4o"),
     memory_manager=memory_manager_full,
-    enable_agentic_memory=True,
+    enable_user_memories=True,
     db=memory_db,
 )
 

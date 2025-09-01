@@ -746,10 +746,8 @@ class MemoryManager:
         db: BaseDb,
         agent_id: Optional[str] = None,
         team_id: Optional[str] = None,
-        delete_memories: bool = True,
         update_memories: bool = True,
         add_memories: bool = True,
-        clear_memories: bool = True
     ) -> str:
         if self.model is None:
             log_error("No model provided for memory manager")
@@ -773,8 +771,6 @@ class MemoryManager:
                 team_id=team_id,
                 enable_add_memory=add_memories,
                 enable_update_memory=update_memories,
-                enable_delete_memory=delete_memories,
-                enable_clear_memory=clear_memories
             ),
         )
 
@@ -782,10 +778,8 @@ class MemoryManager:
         messages_for_model: List[Message] = [
             self.get_system_message(
                 existing_memories=existing_memories,
-                enable_delete_memory=delete_memories,
                 enable_update_memory=update_memories,
-                enable_add_memory=add_memories,
-                enable_clear_memory=clear_memories
+                enable_add_memory=add_memories
             ),
             *messages,
         ]
@@ -809,10 +803,8 @@ class MemoryManager:
         db: BaseDb,
         agent_id: Optional[str] = None,
         team_id: Optional[str] = None,
-        delete_memories: bool = True,
         update_memories: bool = True,
         add_memories: bool = True,
-        clear_memories: bool = True
     ) -> str:
         if self.model is None:
             log_error("No model provided for memory manager")
@@ -836,8 +828,6 @@ class MemoryManager:
                 team_id=team_id,
                 enable_add_memory=add_memories,
                 enable_update_memory=update_memories,
-                enable_delete_memory=delete_memories,
-                enable_clear_memory=clear_memories
             ),
         )
 
@@ -845,10 +835,8 @@ class MemoryManager:
         messages_for_model: List[Message] = [
             self.get_system_message(
                 existing_memories=existing_memories,
-                enable_delete_memory=delete_memories,
                 enable_update_memory=update_memories,
                 enable_add_memory=add_memories,
-                enable_clear_memory=clear_memories
             ),
             *messages,
         ]
