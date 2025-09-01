@@ -44,13 +44,13 @@ class MemoryManager:
 
     # ----- db tools ---------
     # Whether to delete memories
-    delete_memories: bool = False
+    delete_memories: bool = True
     # Whether to clear memories
-    clear_memories: bool = False
+    clear_memories: bool = True
     # Whether to update memories
-    update_memories: bool = False
+    update_memories: bool = True
     # whether to add memories
-    add_memories: bool = False
+    add_memories: bool = True
 
     # The database to store memories
     db: Optional[BaseDb] = None
