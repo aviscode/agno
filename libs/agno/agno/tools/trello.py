@@ -17,13 +17,6 @@ class TrelloTools(Toolkit):
         api_key: Optional[str] = None,
         api_secret: Optional[str] = None,
         token: Optional[str] = None,
-        create_card: bool = True,
-        get_board_lists: bool = True,
-        move_card: bool = True,
-        get_cards: bool = True,
-        create_board: bool = True,
-        create_list: bool = True,
-        list_boards: bool = True,
         **kwargs,
     ):
         self.api_key = api_key or getenv("TRELLO_API_KEY")

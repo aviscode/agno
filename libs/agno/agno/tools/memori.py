@@ -54,7 +54,6 @@ class MemoriTools(Toolkit):
         verbose: bool = False,
         config: Optional[Dict[str, Any]] = None,
         auto_enable: bool = True,
-        # Enable flags (<6 functions) + all
         enable_search_memory: bool = True,
         enable_record_conversation: bool = True,
         enable_get_memory_stats: bool = True,

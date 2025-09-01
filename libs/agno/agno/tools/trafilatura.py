@@ -68,7 +68,7 @@ class TrafilaturaTools(Toolkit):
         enable_extract_metadata_only: bool = True,
         enable_html_to_text: bool = True,
         enable_extract_batch: bool = True,
-        enable_crawl_website: bool = False,
+        enable_crawl_website: bool = True,
         all: bool = False,
         **kwargs,
     ):

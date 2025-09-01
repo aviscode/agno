@@ -13,8 +13,6 @@ class WikipediaTools(Toolkit):
     def __init__(
         self,
         knowledge: Optional[Knowledge] = None,
-        enable_search_wikipedia: bool = True,
-        enable_search_wikipedia_and_update_knowledge_base: bool = True,
         all: bool = False,
         **kwargs,
     ):
@@ -22,11 +20,9 @@ class WikipediaTools(Toolkit):
 
         self.knowledge: Optional[Knowledge] = knowledge
         if self.knowledge is not None and isinstance(self.knowledge, Knowledge):
-            if all or enable_search_wikipedia_and_update_knowledge_base:
-                tools.append(self.search_wikipedia_and_update_knowledge_base)
+            tools.append(self.search_wikipedia_and_update_knowledge_base)
         else:
-            if all or enable_search_wikipedia:
-                tools.append(self.search_wikipedia)  # type: ignore
+            tools.append(self.search_wikipedia)  # type: ignore
 
         super().__init__(name="wikipedia_tools", tools=tools, **kwargs)
 

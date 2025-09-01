@@ -15,8 +15,8 @@ class TavilyTools(Toolkit):
     def __init__(
         self,
         api_key: Optional[str] = None,
-        enable_web_search_using_tavily: bool = True,
-        enable_web_search_with_tavily: bool = False,
+        enable_search: bool = True,
+        enable_search_context: bool = False,
         all: bool = False,
         max_tokens: int = 6000,
         include_answer: bool = True,
@@ -36,11 +36,11 @@ class TavilyTools(Toolkit):
 
         tools: List[Any] = []
 
-        if all or enable_web_search_with_tavily:
-            tools.append(self.web_search_with_tavily)
-
-        if all or enable_web_search_using_tavily:
-            tools.append(self.web_search_using_tavily)
+        if enable_search or all:
+            if enable_search_context:
+                tools.append(self.web_search_with_tavily)
+            else:
+                tools.append(self.web_search_using_tavily)
 
         super().__init__(name="tavily_tools", tools=tools, **kwargs)
 

@@ -12,20 +12,15 @@ class WebsiteTools(Toolkit):
     def __init__(
         self,
         knowledge: Optional[Knowledge] = None,
-        enable_add_website_to_knowledge: bool = True,
-        enable_read_url: bool = True,
-        all: bool = False,
         **kwargs,
     ):
         self.knowledge: Optional[Knowledge] = knowledge
 
         tools: List[Any] = []
         if self.knowledge is not None:
-            if all or enable_add_website_to_knowledge:
-                tools.append(self.add_website_to_knowledge)
+            tools.append(self.add_website_to_knowledge)
         else:
-            if all or enable_read_url:
-                tools.append(self.read_url)
+            tools.append(self.read_url)
 
         super().__init__(name="website_tools", tools=tools, **kwargs)
 
