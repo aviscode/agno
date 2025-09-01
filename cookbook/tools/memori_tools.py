@@ -26,7 +26,6 @@ agent = Agent(
     # Add the Memori ToolKit to the Agent
     tools=[memori_tools],
     model=OpenAIChat(id="gpt-4o"),
-    show_tool_calls=True,
     markdown=True,
     instructions=dedent(
         """\
