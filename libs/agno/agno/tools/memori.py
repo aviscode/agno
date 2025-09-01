@@ -1,5 +1,5 @@
 import json
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
 
 from agno.agent import Agent
 from agno.tools.toolkit import Toolkit
@@ -73,7 +73,7 @@ class MemoriTools(Toolkit):
             auto_enable: Automatically enable the memory system on initialization
             **kwargs: Additional arguments passed to Toolkit base class
         """
-        tools = []
+        tools: List[Any] = []
         if all or enable_search_memory:
             tools.append(self.search_memory)
         if all or enable_record_conversation:

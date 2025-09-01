@@ -1,7 +1,7 @@
 import base64
 from os import getenv
 from pathlib import Path
-from typing import Optional
+from typing import Any, List, Optional
 from uuid import uuid4
 
 from agno.agent import Agent
@@ -32,7 +32,7 @@ class GroqTools(Toolkit):
         all: bool = False,
         **kwargs,
     ):
-        tools = []
+        tools: List[Any] = []
         if all or enable_transcribe_audio:
             tools.append(self.transcribe_audio)
         if all or enable_translate_audio:

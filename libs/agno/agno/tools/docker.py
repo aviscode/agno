@@ -1,7 +1,7 @@
 import json
 import os
 import sys
-from typing import Dict, Optional, Union
+from typing import Any, Dict, List, Optional, Union
 
 from agno.tools import Toolkit
 from agno.utils.log import logger
@@ -76,7 +76,7 @@ class DockerTools(Toolkit):
         except Exception as e:
             logger.error(f"Error connecting to Docker: {e}")
 
-        tools = [
+        tools: List[Any] = [
             # Container management
             self.list_containers,
             self.start_container,

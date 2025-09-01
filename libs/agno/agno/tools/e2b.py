@@ -4,7 +4,7 @@ import tempfile
 import time
 from os import fdopen, getenv
 from pathlib import Path
-from typing import Any, Callable, Dict, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, Union
 from uuid import uuid4
 
 from agno.agent import Agent
@@ -55,7 +55,7 @@ class E2BTools(Toolkit):
         self.last_execution = None
         self.downloaded_files: Dict[int, str] = {}
 
-        tools = [
+        tools: List[Any] = [
             # Code execution
             self.run_python_code,
             # File operations

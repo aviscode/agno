@@ -1,4 +1,5 @@
 import json
+from typing import Any, List
 
 from agno.tools import Toolkit
 from agno.utils.log import log_debug
@@ -19,7 +20,7 @@ class YFinanceTools(Toolkit):
         self,
         **kwargs,
     ):
-        tools = [
+        tools: List[Any] = [
             self.get_current_stock_price,
             self.get_company_info,
             self.get_stock_fundamentals,
