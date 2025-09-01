@@ -839,6 +839,8 @@ class MemoryManager:
                 existing_memories=existing_memories,
                 enable_update_memory=update_memories,
                 enable_add_memory=add_memories,
+                enable_delete_memory=False,
+                enable_clear_memory=False,
             ),
             *messages,
         ]
