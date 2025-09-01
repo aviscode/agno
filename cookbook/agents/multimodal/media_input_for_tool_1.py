@@ -83,7 +83,7 @@ def main():
         name="Document Processing Agent",
         description="An agent that can process uploaded documents. Use the tool to extract text from the PDF.",
         debug_mode=True,
-        media_for_tools_only=True
+        send_media_to_model=False
     )
 
     print("=== Tool Media Access Example ===\n")

@@ -220,8 +220,8 @@ class Agent:
     update_knowledge: bool = False
     # Add a tool that allows the Model to get the tool call history.
     read_tool_call_history: bool = False
-    # If True, media (images, videos, audio, files) is only available to tools and not sent to the LLM
-    media_for_tools_only: bool = False
+    # If False, media (images, videos, audio, files) is only available to tools and not sent to the LLM
+    send_media_to_model: bool = True
 
     # --- System message settings ---
     # Provide the system message as a string or function
@@ -378,7 +378,7 @@ class Agent:
         search_knowledge: bool = True,
         update_knowledge: bool = False,
         read_tool_call_history: bool = False,
-        media_for_tools_only: bool = False,
+        send_media_to_model: bool = True,
         system_message: Optional[Union[str, Callable, Message]] = None,
         system_message_role: str = "system",
         build_context: bool = True,
@@ -472,7 +472,7 @@ class Agent:
         self.search_knowledge = search_knowledge
         self.update_knowledge = update_knowledge
         self.read_tool_call_history = read_tool_call_history
-        self.media_for_tools_only = media_for_tools_only
+        self.send_media_to_model = send_media_to_model
         
         self.system_message = system_message
         self.system_message_role = system_message_role
@@ -737,7 +737,6 @@ class Agent:
 
         # 2. Generate a response from the Model (includes running function calls)
         self.model = cast(Model, self.model)
-        print('--> model input', run_messages.messages)
         model_response: ModelResponse = self.model.response(
             messages=run_messages.messages,
             tools=self._tools_for_model,
@@ -4644,10 +4643,10 @@ class Agent:
             return Message(
                 role=self.user_message_role,
                 content=input,
-                images=None if self.media_for_tools_only else images,
-                audio=None if self.media_for_tools_only else audio,
-                videos=None if self.media_for_tools_only else videos,
-                files=None if self.media_for_tools_only else files,
+                images=None if not self.send_media_to_model else images,
+                audio=None if not self.send_media_to_model else audio,
+                videos=None if not self.send_media_to_model else videos,
+                files=None if not self.send_media_to_model else files,
                 **kwargs,
             )
         # 2. Build the user message for the Agent
@@ -4657,10 +4656,10 @@ class Agent:
                 return Message(
                     role=self.user_message_role,
                     content="",
-                    images=None if self.media_for_tools_only else images,
-                    audio=None if self.media_for_tools_only else audio,
-                    videos=None if self.media_for_tools_only else videos,
-                    files=None if self.media_for_tools_only else files,
+                    images=None if not self.send_media_to_model else images,
+                    audio=None if not self.send_media_to_model else audio,
+                    videos=None if not self.send_media_to_model else videos,
+                    files=None if not self.send_media_to_model else files,
                     **kwargs,
                 )
             else:
@@ -4679,10 +4678,10 @@ class Agent:
                 return Message(
                     role=self.user_message_role,
                     content=message_content,
-                    images=None if self.media_for_tools_only else images,
-                    audio=None if self.media_for_tools_only else audio,
-                    videos=None if self.media_for_tools_only else videos,
-                    files=None if self.media_for_tools_only else files,
+                    images=None if not self.send_media_to_model else images,
+                    audio=None if not self.send_media_to_model else audio,
+                    videos=None if not self.send_media_to_model else videos,
+                    files=None if not self.send_media_to_model else files,
                     **kwargs,
                 )
 
@@ -4775,10 +4774,10 @@ class Agent:
                 return Message(
                     role=self.user_message_role,
                     content=user_msg_content,
-                    audio=None if self.media_for_tools_only else audio,
-                    images=None if self.media_for_tools_only else images,
-                    videos=None if self.media_for_tools_only else videos,
-                    files=None if self.media_for_tools_only else files,
+                    audio=None if not self.send_media_to_model else audio,
+                    images=None if not self.send_media_to_model else images,
+                    videos=None if not self.send_media_to_model else videos,
+                    files=None if not self.send_media_to_model else files,
                     **kwargs,
                 )
 
@@ -4911,6 +4910,8 @@ class Agent:
                 metadata=metadata,
                 **kwargs,
             )
+
+            print('--> user message', user_message)
 
         # 4.2 If input is provided as a Message, use it directly
         elif isinstance(input, Message):
