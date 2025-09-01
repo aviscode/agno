@@ -1,6 +1,6 @@
 import json
 from os import getenv
-from typing import Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional, Union
 
 from agno.tools import Toolkit
 from agno.utils.log import log_debug, log_info, logger
@@ -57,7 +57,7 @@ class RedditTools(Toolkit):
             else:
                 logger.warning("Missing Reddit API credentials")
 
-        tools = [
+        tools: List[Any] = [
             self.get_user_info,
             self.get_top_posts,
             self.get_subreddit_info,

@@ -1,5 +1,6 @@
 import time
 from pathlib import Path
+from typing import Any, List
 from uuid import uuid4
 
 from agno.agent import Agent
@@ -27,7 +28,7 @@ class OpenCVTools(Toolkit):
     ):
         self.show_preview = show_preview
 
-        tools = []
+        tools: List[Any] = []
         if all or enable_capture_image:
             tools.append(self.capture_image)
         if all or enable_capture_video:
