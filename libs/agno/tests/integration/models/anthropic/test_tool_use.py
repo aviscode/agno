@@ -234,12 +234,11 @@ def test_tool_call_custom_tool_optional_parameters():
 
 
 def test_tool_call_pydantic_parameters():
-    
     from pydantic import BaseModel, Field
-    
+
     class ResearchRequest(BaseModel):
         topic: str = Field(description="Research topic")
-        depth: int = Field(description="Research depth 1-10") 
+        depth: int = Field(description="Research depth 1-10")
         sources: list[str] = Field(description="Preferred sources")
 
     def research_topic(request: ResearchRequest) -> str:
@@ -253,7 +252,9 @@ def test_tool_call_pydantic_parameters():
         monitoring=False,
     )
 
-    response = agent.run("Research the topic 'AI' with a depth of 5 and sources from https://arxiv.org/pdf/2307.06435 and https://arxiv.org/pdf/2502.09601")
+    response = agent.run(
+        "Research the topic 'AI' with a depth of 5 and sources from https://arxiv.org/pdf/2307.06435 and https://arxiv.org/pdf/2502.09601"
+    )
 
     # Verify tool usage
     assert any(msg.tool_calls for msg in response.messages)

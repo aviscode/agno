@@ -317,7 +317,7 @@ def format_tools_for_model(tools: Optional[List[Dict[str, Any]]] = None) -> Opti
         for param_name, param_info in properties.items():
             # Preserve the complete schema structure for complex types
             input_properties[param_name] = param_info.copy()
-            
+
             # Ensure description is present (default to empty if missing)
             if "description" not in input_properties[param_name]:
                 input_properties[param_name]["description"] = ""

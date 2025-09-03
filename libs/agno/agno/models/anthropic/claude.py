@@ -182,7 +182,6 @@ class Claude(Model):
             log_debug(f"Calling {self.provider} with request parameters: {request_kwargs}", log_level=2)
         return request_kwargs
 
-
     def invoke(
         self,
         messages: List[Message],
