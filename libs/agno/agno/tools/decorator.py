@@ -248,10 +248,7 @@ def tool(*args, **kwargs) -> Union[Function, Callable[[F], Function]]:
                 and v is not None
             },
         }
-        func_obj = Function(**tool_config)
-        # Process entrypoint immediately to extract schema from type hints
-        func_obj.process_entrypoint()
-        return func_obj
+        return Function(**tool_config)
 
     # Handle both @tool and @tool() cases
     if len(args) == 1 and callable(args[0]) and not kwargs:
